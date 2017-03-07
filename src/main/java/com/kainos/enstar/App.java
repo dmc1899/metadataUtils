@@ -1,25 +1,27 @@
 package com.kainos.enstar;
 
-import java.io.IOException;
-import java.io.File;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.hive.metastore.api.*;
-import org.apache.hadoop.hive.metastore.*;
-import org.apache.hadoop.hive.conf.*;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.hive.conf.HiveConf;
+import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
+import org.apache.hadoop.hive.metastore.api.InvalidOperationException;
+import org.apache.hadoop.hive.metastore.api.MetaException;
+import org.apache.hadoop.hive.metastore.api.Table;
+import org.apache.thrift.TException;
+import org.apache.avro.Schema;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Metadata Utility for HCatalogue
  *
  */
-public class App 
+public class App
 {
     private static Logger log = LoggerFactory.getLogger(App.class);
 
@@ -32,6 +34,26 @@ public class App
 
     public static void main( String[] args )
     {
+        try {
+            testReadAndWriteAvroSchemaDocumentation();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        updateHiveMetastore();
+
+    }
+
+    public static void testReadAndWriteAvroSchemaDocumentation() throws IOException {
+        String json = "{\"type\": \"record\", \"name\": \"r\", \"doc\": \"this is documentation!\", \"fields\": ["
+                + "{ \"name\": \"f1\", \"type\": \"long\" }"
+                + "]}";
+        Schema.Parser s = new Schema.Parser();
+        Schema schema = s.parse(json);
+        System.out.println(schema.getDoc());
+    }
+
+    private static void updateHiveMetastore() {
         // Create Hive Metastore client
         HiveMetaStoreClient hiveMetastoreClient = null;
         try {
@@ -56,15 +78,27 @@ public class App
 
         // Set the parameters of the table for "comment" and "avro.doc"
         //Map<String, String> newMap = new HashMap<String, String>();
-        currentParams.put(HIVEDBCOMMENTKEY,"table comment");
-        currentParams.put(HIVEDBAVRODOCKEY,"table comment");
+        currentParams.put(HIVEDBCOMMENTKEY, "woo hoo !! hive table comment");
+        currentParams.put(HIVEDBAVRODOCKEY, "woo hoo !! avro table comment");
 
         thisTable.setParameters(currentParams);
 
+        try {
+            hiveMetastoreClient.alter_table("default", "hive1", thisTable);
+        } catch (InvalidOperationException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (MetaException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (TException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 
-    public static HiveMetaStoreClient createMetastoreClient() throws Exception {
+    private static HiveMetaStoreClient createMetastoreClient() throws Exception {
         HiveConf conf=new HiveConf();
         File f=new File(HIVECONFDIR+File.separator+HIVECONF);
         log.debug("hive conf file:"+f.toString());
@@ -104,8 +138,8 @@ public class App
 
     // Create Hive configuration
     public static HiveConf createHiveConf(String metastoreUrl) throws IOException {
-return new HiveConf();
-    };
+        return new HiveConf();
+    }
 
     // Create Hive configuration from Hadoop configuration.
     public static HiveConf createHiveConf(Configuration conf,
@@ -115,7 +149,7 @@ return new HiveConf();
         hcatConf.setVar(HiveConf.ConfVars.METASTOREURIS, metastoreUrl);
         hcatConf.setIntVar(HiveConf.ConfVars.METASTORETHRIFTCONNECTIONRETRIES, 3);
         //hcatConf.set(HiveConf.ConfVars.SEMANTIC_ANALYZER_HOOK.varname,
-          //      HCatSemanticAnalyzer.class.getName());
+        //      HCatSemanticAnalyzer.class.getName());
         hcatConf.set(HiveConf.ConfVars.HIVE_SUPPORT_CONCURRENCY.varname, "false");
 
         hcatConf.set(HiveConf.ConfVars.PREEXECHOOKS.varname, "");
