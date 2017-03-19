@@ -1,4 +1,4 @@
-package com.kainos.enstar;
+package com.kainos.enstar.driver;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

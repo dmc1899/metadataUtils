@@ -1,17 +1,8 @@
-package com.kainos.enstar;
+package com.kainos.enstar.metastore;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.hive.conf.HiveConf;
-import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
-import org.apache.hadoop.hive.metastore.api.InvalidOperationException;
-import org.apache.hadoop.hive.metastore.api.MetaException;
-import org.apache.hadoop.hive.metastore.api.Table;
-import org.apache.thrift.TException;
-import org.apache.avro.Schema;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 import org.apache.log4j.Logger;
+import com.kainos.enstar.model.Database;
+import com.kainos.enstar.model.Table;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,13 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Metadata Utility for HCatalogue
- *
+ * Created by darragh on 16/03/2017.
  */
-public class App
-{
-    //private static Logger log = LoggerFactory.getLogger(App.class);
-private final static Logger logger = Logger.getLogger(App.class);
+public class HiveMetastoreDestination implements MetastoreDestination{
 
     private static final String HIVECONFDIR = "/etc/hive/conf";
     private static final String HIVECONF = "hive-site.xml";
@@ -34,32 +21,13 @@ private final static Logger logger = Logger.getLogger(App.class);
     private static final String HIVEDBCOMMENTKEY = "comment";
     private static final String HIVEDBAVRODOCKEY = "avro.schema.doc";
 
-    public static void main( String[] args )
-    {
-        if(logger.isDebugEnabled()){
-            logger.debug("This is debug : " + "test");
-        }
-        //log.debug("hive conf file:"+"gg".toString());
-        try {
-            testReadAndWriteAvroSchemaDocumentation();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-        updateHiveMetastore();
+    public void updateDatabaseTableDescriptions(Database database){
 
-    }
+    };
 
-    public static void testReadAndWriteAvroSchemaDocumentation() throws IOException {
-        String json = "{\"type\": \"record\", \"name\": \"r\", \"doc\": \"this is documentation!\", \"fields\": ["
-                + "{ \"name\": \"f1\", \"type\": \"long\" }"
-                + "]}";
-        Schema.Parser s = new Schema.Parser();
-        Schema schema = s.parse(json);
-        System.out.println(schema.getDoc());
-    }
+    private void updateTableDescription(Table table){};
 
-    private static void updateHiveMetastore() {
+    private void updateHiveMetastore() {
         // Create Hive Metastore client
         HiveMetaStoreClient hiveMetastoreClient = null;
         try {
@@ -103,8 +71,7 @@ private final static Logger logger = Logger.getLogger(App.class);
         }
     }
 
-
-    private static HiveMetaStoreClient createMetastoreClient() throws Exception {
+    private  HiveMetaStoreClient createMetastoreClient() throws Exception {
         HiveConf conf=new HiveConf();
         File f=new File(HIVECONFDIR+File.separator+HIVECONF);
         //log.debug("hive conf file:"+f.toString());
@@ -115,9 +82,8 @@ private final static Logger logger = Logger.getLogger(App.class);
         return(new HiveMetaStoreClient(conf));
     }
 
-
     // Load Hadoop configuration from a flat file.
-    private static Configuration initConfig() throws IOException {
+    private  Configuration initConfig() throws IOException {
         Configuration conf = new Configuration();
         String configFile = System.getenv("HADOOPCONFIGFILE");
         if (configFile == null) {
@@ -138,17 +104,13 @@ private final static Logger logger = Logger.getLogger(App.class);
         return conf;
     }
 
-
-
-
-
     // Create Hive configuration
     public static HiveConf createHiveConf(String metastoreUrl) throws IOException {
         return new HiveConf();
     }
 
     // Create Hive configuration from Hadoop configuration.
-    public static HiveConf createHiveConf(Configuration conf,
+    public  HiveConf createHiveConf(Configuration conf,
                                           String metastoreUrl) throws IOException {
         HiveConf hcatConf = new HiveConf(conf, HiveConf.class);
         hcatConf.set("hive.metastore.local", "false");
@@ -165,7 +127,7 @@ private final static Logger logger = Logger.getLogger(App.class);
 
 
 
-    public static void debug (){
+    private  void debug (){
 
         Configuration hadoopConfig = new Configuration();
         HiveConf hiveConfig = new HiveConf();
