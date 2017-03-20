@@ -1,4 +1,4 @@
-package com.kainos.enstar.model;
+package com.kainos.enstar.common.model;
 
 /**
  * Created by darragh on 16/03/2017.

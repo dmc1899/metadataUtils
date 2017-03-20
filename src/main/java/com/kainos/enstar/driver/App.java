@@ -1,13 +1,7 @@
 package com.kainos.enstar.driver;
 
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.hive.conf.HiveConf;
-import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
-import org.apache.hadoop.hive.metastore.api.InvalidOperationException;
-import org.apache.hadoop.hive.metastore.api.MetaException;
-import org.apache.hadoop.hive.metastore.api.Table;
-import org.apache.thrift.TException;
+
+
 import org.apache.avro.Schema;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -15,6 +9,7 @@ import org.apache.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,17 +26,60 @@ public class App
 
     public static void main( String[] args )
     {
+        ArrayList<Schema> schemas = new ArrayList<Schema>();
+        Schema.Parser s = new Schema.Parser();
+
+        try{
+            File directory = new File("/tmp/avrodir/");
+            if (directory.exists() && directory.isDirectory()){
+                int numFiles = directory.listFiles().length;
+                if (numFiles > 0){
+                    for (File schemaFile: directory.listFiles()){
+                        Schema schema = s.parse(schemaFile);
+                        schemas.add(schema);
+                    }
+                }
+            }
+        }
+
+        catch(Exception e){
+
+        }
+
+
+
+
         if(logger.isDebugEnabled()){
             logger.debug("This is debug : " + "test");
         }
+
+
+
+        String json = "{\"type\": \"record\", \"name\": \"r\", \"doc\": \"this is documentation!\", \"fields\": ["
+            + "{ \"name\": \"f1\", \"type\": \"long\" }"
+            + "]}";
+        String json2 = "{\"type\": \"record\", \"name\": \"s\", \"doc\": \"this is documentation for s!\", \"fields\": ["
+                + "{ \"name\": \"field1\", \"type\": \"string\" }"
+                + "]}";
+
+        Schema schema = s.parse(json);
+        schemas.add(schema);
+
+        schema = s.parse(json2);
+        schemas.add(schema);
+
+        System.out.println(schema.getDoc());
+
+
+
         //log.debug("hive conf file:"+"gg".toString());
         try {
-            testReadAndWriteAvroSchemaDocumentation();
-        } catch (IOException e) {
+            //testReadAndWriteAvroSchemaDocumentation();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         
-        updateHiveMetastore();
+       // updateHiveMetastore();
 
     }
 }

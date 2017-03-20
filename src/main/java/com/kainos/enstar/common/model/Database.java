@@ -1,4 +1,4 @@
-package com.kainos.enstar.model;
+package com.kainos.enstar.common.model;
 
 import java.util.ArrayList;
 

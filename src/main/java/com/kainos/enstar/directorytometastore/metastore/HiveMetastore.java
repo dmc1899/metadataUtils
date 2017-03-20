@@ -1,8 +1,17 @@
-package com.kainos.enstar.metastore;
+package com.kainos.enstar.directorytometastore.metastore;
 
 import org.apache.log4j.Logger;
-import com.kainos.enstar.model.Database;
-import com.kainos.enstar.model.Table;
+import org.apache.thrift.TException;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.hive.conf.HiveConf;
+import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
+import org.apache.hadoop.hive.metastore.api.Table;
+import org.apache.hadoop.hive.metastore.api.InvalidOperationException;
+import org.apache.hadoop.hive.metastore.api.MetaException;
+
+import com.kainos.enstar.common.model.Database;
+//import com.kainos.enstar.common.model.Table;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,14 +21,18 @@ import java.util.Map;
 /**
  * Created by darragh on 16/03/2017.
  */
-public class HiveMetastoreDestination implements MetastoreDestination{
+public class HiveMetastore implements Metastore {
 
-    private static final String HIVECONFDIR = "/etc/hive/conf";
+    private String hiveConfFile = "/etc/hive/conf";
     private static final String HIVECONF = "hive-site.xml";
     private static final String HADOOPCONFIG = "hadoop_config.xml";
     private static final String METASTOREURL = "http://localhost";
     private static final String HIVEDBCOMMENTKEY = "comment";
     private static final String HIVEDBAVRODOCKEY = "avro.schema.doc";
+
+    public HiveMetastore(String configPath){
+        this.hiveConfFile = configPath;
+    }
 
     public void updateDatabaseTableDescriptions(Database database){
 
@@ -73,7 +86,7 @@ public class HiveMetastoreDestination implements MetastoreDestination{
 
     private  HiveMetaStoreClient createMetastoreClient() throws Exception {
         HiveConf conf=new HiveConf();
-        File f=new File(HIVECONFDIR+File.separator+HIVECONF);
+        File f=new File(hiveConfFile+File.separator+HIVECONF);
         //log.debug("hive conf file:"+f.toString());
         if(f.exists()){
             conf.addResource(f.toURI().toURL());

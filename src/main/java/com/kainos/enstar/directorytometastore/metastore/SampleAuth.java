@@ -1,4 +1,4 @@
-package com.kainos.enstar.driver;
+package com.kainos.enstar.directorytometastore.metastore;
 
 import java.util.List;
 
