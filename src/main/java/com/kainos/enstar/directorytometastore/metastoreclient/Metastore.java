@@ -1,6 +1,6 @@
-package com.kainos.enstar.directorytometastore.metastore;
+package com.kainos.enstar.directorytometastore.metastoreclient;
 
-import com.kainos.enstar.common.model.Database;
+import TOBEREMOVED.Database;
 
 /**
  * Created by darragh on 16/03/2017.

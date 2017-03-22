@@ -1,4 +1,4 @@
-package com.kainos.enstar.directorytometastore.metastore;
+package com.kainos.enstar.directorytometastore.metastoreclient;
 
 import java.util.List;
 

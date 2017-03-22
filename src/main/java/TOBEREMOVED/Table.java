@@ -1,4 +1,4 @@
-package com.kainos.enstar.common.model;
+package TOBEREMOVED;
 
 import java.util.ArrayList;
 

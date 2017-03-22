@@ -2,10 +2,10 @@ package com.kainos.enstar.directorytometastore.directory;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-import com.kainos.enstar.common.model.*;
+import TOBEREMOVED.Database;
+import com.kainos.enstar.common.modeltoberemoved.*;
 
 import org.apache.avro.Schema;
 

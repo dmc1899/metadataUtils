@@ -1,6 +1,5 @@
-package com.kainos.enstar.directorytometastore.metastore;
+package com.kainos.enstar.directorytometastore.metastoreclient;
 
-import org.apache.log4j.Logger;
 import org.apache.thrift.TException;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -10,7 +9,7 @@ import org.apache.hadoop.hive.metastore.api.Table;
 import org.apache.hadoop.hive.metastore.api.InvalidOperationException;
 import org.apache.hadoop.hive.metastore.api.MetaException;
 
-import com.kainos.enstar.common.model.Database;
+import TOBEREMOVED.Database;
 //import com.kainos.enstar.common.model.Table;
 
 import java.io.File;

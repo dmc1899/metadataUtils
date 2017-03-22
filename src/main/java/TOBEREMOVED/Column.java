@@ -1,4 +1,4 @@
-package com.kainos.enstar.common.model;
+package TOBEREMOVED;
 
 /**
  * Created by darragh on 16/03/2017.
