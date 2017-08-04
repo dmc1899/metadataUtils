@@ -3,21 +3,91 @@ package com.kainos.enstar.directorytometastore.directory;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import TOBEREMOVED.Database;
-import com.kainos.enstar.common.modeltoberemoved.*;
 
+
+import com.kainos.enstar.avroschemas.SchemaSource;
 import org.apache.avro.Schema;
 
 /**
  * Created by darragh on 16/03/2017.
+ *
+ * This class represents a location on a filesystem that contains one or more Avro schemas.
  */
 public class AvroSchemasDirectory implements SchemasDirectory {
 
     private File directory = null;
     private int fileCount = 0;
-    private Schema.Parser schemaParser = null;
+    //private Schema.Parser schemaParser = null;
     private ArrayList<Schema> schemas = null;
+    private SchemaSource schemaSource = null;
+
+
+    public AvroSchemasDirectory(SchemaSource schemaSource) throws Exception{
+
+        String previousNamespace = null;
+
+        for (Schema schema : schemaSource.getSchemas()) {
+            String currentNamespace = schema.getNamespace();
+            if (currentNamespace != previousNamespace) {
+                throw new Exception("Multiple namespaces identified: " + currentNamespace + " and " + previousNamespace);
+            }
+            previousNamespace = currentNamespace;
+        }
+        this.schemaSource = schemaSource;
+        this.schemas = schemaSource.getSchemas();
+    }
+
+    public Map<String,String> getSchemaTableComments (){
+        Map<String,String> tablesAndComments = new HashMap<String, String>();
+
+        for (Schema schema : this.schemas) {
+            String tableName = schema.getName();
+            String tableComment = schema.getDoc();
+
+            tablesAndComments.put(tableName, tableComment);
+        }
+        return tablesAndComments;
+    }
+
+
+    public Map<String,String> getSchemaPrimaryKeyColumns (){
+        Map<String,String> tablesAndComments = new HashMap<String, String>();
+
+        for (Schema schema : this.schemas) {
+            String tableName = schema.getName();
+            String tableComment = schema.getDoc();
+
+            tablesAndComments.put(tableName, tableComment);
+        }
+        return tablesAndComments;
+    }
+
+
+
+
+
+
+
+    public String getNamespace() throws Exception {
+        String previousNamespace = null;
+
+        for (Schema schema : this.schemas) {
+            String currentNamespace = schema.getNamespace();
+            if (currentNamespace != previousNamespace) {
+                throw new Exception("Multiple namespaces identified: " + currentNamespace + " and " + previousNamespace);
+
+            }
+            previousNamespace = currentNamespace;
+        }
+        return previousNamespace;
+    }
+
+
+
 
     public AvroSchemasDirectory(String pathToDirectoryContainingSchemaFiles) throws IOException {
 
@@ -52,7 +122,7 @@ public class AvroSchemasDirectory implements SchemasDirectory {
 
         this.directory = directory;
         this.fileCount = numFiles;
-        this.schemaParser = schemaParser;
+        //this.schemaParser = schemaParser;
         this.schemas = schemas;
     }
 
@@ -63,6 +133,10 @@ public class AvroSchemasDirectory implements SchemasDirectory {
     public int getFileCount() {
         return fileCount;
     }
+
+
+
+
 
     public Database getDatabaseDefinition(){
 
