@@ -24,6 +24,7 @@
       "precision" : 15,
       "scale" : 7
     } ],
+    "doc":  "PK - this is the first part of the primary key for policy",
     "default" : null
   }, {
     "name" : "annivdate",
@@ -80,6 +81,7 @@
       "logicalType" : "varchar",
       "maxLength" : 15
     } ],
+    "doc":  "PK - this is the second part of the primary key for policy",
     "default" : null
   }, {
     "name" : "lloydsbrokerid",

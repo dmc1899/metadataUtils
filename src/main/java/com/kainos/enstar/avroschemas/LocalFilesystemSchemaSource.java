@@ -17,7 +17,7 @@ public class LocalFilesystemSchemaSource implements SchemaSource {
     private ArrayList<Schema> schemas = null;
     private String primaryKeyToken = null;
 
-    public LocalFilesystemSchemaSource(String pathToDirectoryContainingSchemaFiles) throws IOException {
+    public LocalFilesystemSchemaSource(String pathToDirectoryContainingSchemaFiles) throws Exception {
 
         File directory = new File(pathToDirectoryContainingSchemaFiles);
         if (!directory.exists() || (!directory.isDirectory())) {
@@ -48,6 +48,16 @@ public class LocalFilesystemSchemaSource implements SchemaSource {
             schemas.add(schema);
         }
 
+        // We expect one unique name space per source location.
+        String previousNamespace = null;
+        for (Schema schema : schemas) {
+            String currentNamespace = schema.getNamespace();
+            if (currentNamespace != previousNamespace) {
+                throw new Exception("Multiple namespaces identified: " + currentNamespace + " and " + previousNamespace);
+            }
+            previousNamespace = currentNamespace;
+        }
+
         this.directory = directory;
         this.fileCount = numFiles;
         this.schemaParser = schemaParser;
@@ -60,5 +70,9 @@ public class LocalFilesystemSchemaSource implements SchemaSource {
 
     public ArrayList<Schema> getSchemas() {
         return schemas;
+    }
+
+    public int getNumberOfSchemas(){
+        return this.fileCount;
     }
 }

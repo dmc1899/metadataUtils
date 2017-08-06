@@ -5,6 +5,6 @@ import TOBEREMOVED.Database;
 /**
  * Created by darragh on 16/03/2017.
  */
-public interface SchemasDirectory {
+public interface SchemaGroup {
     public Database getDatabaseDefinition();
 }

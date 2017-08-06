@@ -15,6 +15,7 @@
   }, {
     "name" : "layernum",
     "type" : [ "null", "int" ],
+    "doc":  "PK - this is the first part of the primary key for policy",
     "default" : null
   }, {
     "name" : "statsccyroe",
@@ -24,6 +25,7 @@
       "precision" : 15,
       "scale" : 7
     } ],
+    "doc":  "This is the comment for the statscyroe field.",
     "default" : null
   }, {
     "name" : "annivdate",
@@ -104,6 +106,7 @@
       "logicalType" : "varchar",
       "maxLength" : 1
     } ],
+    "doc":  "PK - this is the second part of the primary key for policy",
     "default" : null
   }, {
     "name" : "periodtype",

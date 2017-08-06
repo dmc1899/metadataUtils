@@ -11,5 +11,9 @@ public interface SchemaSource {
 
     public ArrayList<Schema> getSchemas();
 
-    public void setPrimaryKeyToken(String token);
+    //public void setPrimaryKeyToken(String token);
+
+    //public String getPrimaryKeyToken();
+
+    public int getNumberOfSchemas();
 }

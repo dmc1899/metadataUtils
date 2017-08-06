@@ -5,6 +5,7 @@ package com.kainos.enstar.driver;
 import org.apache.avro.Schema;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
+import org.apache.avro.reflect.AvroSchema;
 import org.apache.log4j.Logger;
 
 import java.io.File;
@@ -26,6 +27,7 @@ public class App
 
     public static void main( String[] args )
     {
+
         ArrayList<Schema> schemas = new ArrayList<Schema>();
         Schema.Parser s = new Schema.Parser();
 

@@ -1,11 +1,15 @@
 package com.kainos.enstar.driver;
 
-import com.kainos.enstar.directorytometastore.directory.AvroSchemasDirectory;
+import com.kainos.enstar.avroschemas.LocalFilesystemSchemaSource;
+import com.kainos.enstar.avroschemas.SchemaSource;
+import com.kainos.enstar.directorytometastore.directory.AvroSchemaGroup;
+import org.apache.avro.Schema;
 import org.junit.Test;
 import org.junit.Assert;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.is;
 
@@ -24,10 +28,10 @@ public class AppTest
         Map<String, String> actualTableComment = new HashMap<String, String>();
 
         try{
-            AvroSchemasDirectory avroSchemasDirectory = new AvroSchemasDirectory("/Users/darragh/Documents/kainos/enstar/myutils/metadataUtils/target/test-classes/duplicateavroschemas/");
+            //AvroSchemaGroup avroSchemaGroup = new AvroSchemaGroup("/Users/darragh/Documents/kainos/enstar/myutils/metadataUtils/target/test-classes/duplicateavroschemas/");
             System.out.println("next");
 
-            actualTableComment = avroSchemasDirectory.getTableComments();
+            //actualTableComment = avroSchemaGroup.getTableComments();
 
             System.out.println("next");
 
@@ -55,10 +59,10 @@ public void testSingleValidAvroSchema() throws Exception{
     Map<String, String> actualTableComment = new HashMap<String, String>();
 
     try{
-        AvroSchemasDirectory avroSchemasDirectory = new AvroSchemasDirectory("/singlevalidavroschema/");
+        //AvroSchemaGroup avroSchemaGroup = new AvroSchemaGroup("/singlevalidavroschema/");
         System.out.println("next");
 
-        actualTableComment = avroSchemasDirectory.getTableComments();
+        //actualTableComment = avroSchemaGroup.getTableComments();
 
         System.out.println("next");
 
@@ -74,4 +78,57 @@ public void testSingleValidAvroSchema() throws Exception{
     System.out.println("next");
 
 }
+
+@Test
+public void testSimpleSchema() throws Exception{
+    String thisPath = this.getClass().getClassLoader().getResource("").getPath();
+
+    MySchemaSource mySchemaSource = new MySchemaSource();
+    AvroSchemaGroup myAvroSchemaGroup = new AvroSchemaGroup(mySchemaSource);
+
+    Map<String, String> schemaComments = new HashMap<String, String>();
+    schemaComments = myAvroSchemaGroup.getSchemaComments();
+
+    List<Schema> schemas = new ArrayList<Schema>();
+    schemas = myAvroSchemaGroup.getSchemaPrimaryKeyColumns("PK - ");
+
+    System.out.println("here");
+
+
+}
+
+    private class MySchemaSource implements SchemaSource{
+
+        private int numberSchemas = 0;
+        String thisPath = this.getClass().getClassLoader().getResource("").getPath() + "/singlevalidavroschema/";
+
+        public ArrayList<Schema> getSchemas() {
+
+            File directory = new File(thisPath);
+            if (!directory.exists() || (!directory.isDirectory())) {
+                System.out.println("Can't find directory");
+            }
+
+            File[] files = directory.listFiles();
+
+            Schema.Parser schemaParser = new Schema.Parser();
+            ArrayList<Schema> schemas = new ArrayList<Schema>();
+
+            try {
+                for (File schemaFile : directory.listFiles()) {
+                    Schema schema = schemaParser.parse(schemaFile);
+                    schemas.add(schema);
+                }
+            }
+         catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        numberSchemas = schemas.size();
+        return schemas;
+
+        }
+
+        public int getNumberOfSchemas(){ return numberSchemas;};
+    }
 }
