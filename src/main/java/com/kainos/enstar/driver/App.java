@@ -28,6 +28,10 @@ public class App
     public static void main( String[] args )
     {
 
+        int cmpAtoB = "a".compareTo("b");
+        int cmpBtoA = "b".compareTo("a");
+
+
         ArrayList<Schema> schemas = new ArrayList<Schema>();
         Schema.Parser s = new Schema.Parser();
 

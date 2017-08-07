@@ -62,14 +62,14 @@ public class SampleAuth {
                 System.out.println("Table Props are: " + tbl.getTblProps());
                 List<HCatFieldSchema> fields = tbl.getCols();
                 for (HCatFieldSchema f: fields) {
-                    System.out.println("Field Name is: " + f.getName());
-                    System.out.println("Field Type String is: " + f.getTypeString());
-                    System.out.println("Field Type Category is: " + f.getTypeString());
+                    System.out.println("Column Name is: " + f.getName());
+                    System.out.println("Column Type String is: " + f.getTypeString());
+                    System.out.println("Column Type Category is: " + f.getTypeString());
                     if (f.getCategory().equals(HCatFieldSchema.Category.STRUCT)) {
                         HCatSchema schema = f.getStructSubSchema();
                         List<String> structFields = schema.getFieldNames();
                         for (String fieldName: structFields) {
-                            System.out.println("Struct Field Name is: " + fieldName);
+                            System.out.println("Struct Column Name is: " + fieldName);
                         }
                     }
                 }

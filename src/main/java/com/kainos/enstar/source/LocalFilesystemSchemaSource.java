@@ -1,4 +1,4 @@
-package com.kainos.enstar.avroschemas;
+package com.kainos.enstar.source;
 
 import org.apache.avro.Schema;
 
