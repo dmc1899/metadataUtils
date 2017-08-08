@@ -27,6 +27,14 @@ public class Table implements Comparable<Table> {
 
     public List<String> getColumns() { return this.columns;}
 
+    public Table(){};
+
+    public Table (String tableName, String tableComment, List<String> columnList){
+        this.tableName = tableName;
+        this.comment = tableComment;
+        this.columns = columnList;
+    }
+
     public void setColumns(List<String> columns){ this.columns = columns;}
     //public Map<String, Column> getColumns(){return columns;};
 

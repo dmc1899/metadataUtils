@@ -62,6 +62,33 @@ public class AvroSchemaGroup implements SchemaGroup {
         return tablesWithPkColumnsOnly;
     }
 
+    public List<Table> getTablesAndColumns(){
+
+        Table table;
+        List<Table> tablesWithColumns = new ArrayList<>();
+
+        for (Schema schema : this.schemas) {
+            table = new Table();
+            table.setTableName(schema.getName());
+            table.setComment(schema.getDoc());
+
+            List<String> fields = new ArrayList<>();
+
+            for (Schema.Field field : schema.getFields()) {
+                String fieldComment = field.doc();
+                String fieldName = field.name();
+                System.out.println(field.doc() + field.name());
+
+                fields.add(fieldName);
+
+            }
+            //Collections.sort(fields);
+            table.setColumns(fields);
+            tablesWithColumns.add(table);
+        }
+        //Collections.sort(tablesWithColumns);
+        return tablesWithColumns;
+    }
 }
 
 

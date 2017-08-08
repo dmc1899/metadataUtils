@@ -109,23 +109,53 @@ public class AvroSchemaGroupTest
         List<String> expectedColumnList = Arrays.asList("statsccyroe");
         Collections.sort(expectedColumnList);
 
-        Table expectedTable = new Table();
-        expectedTable.setTableName("policy");
-        expectedTable.setComment(null);
-        expectedTable.setColumns(expectedColumnList);
+        Table expectedTable = new Table("policy", null, expectedColumnList);
 
         List<Table> expectedTableList = new ArrayList<Table>();
         expectedTableList.add(expectedTable);
 
         assertTwoTableListsAreEqual(expectedTableList, actualTableList);
-        
+
+    }
+
+    @Test
+    public void getNoPrimaryKeyFieldForOneSchema() throws Exception{
+        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("/singleavroschemanoprimarykey/");
+
+        List<Table> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns("PKINVALID - ");
+
+        List<String> expectedColumnList = null;
+
+        Table expectedTable = new Table("policy", null, expectedColumnList);
+
+        List<Table> expectedTableList = new ArrayList<Table>();
+        expectedTableList.add(expectedTable);
+
+        assertTwoTableListsAreEqual(expectedTableList, actualTableList);
+
+        //TODO - custom code to verify that the inner list is NULL but the outer list has policy.
+
     }
 
 
-    private boolean assertTwoTableListsAreEqual(List<Table> expectedTableList, List<Table> actualTableList){
+    // Utility method
+@Test
+    public void testSort() throws Exception{
+    AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("/singlevalidavroschema/");
+    List<Table> actualTableList = myAvroSchemaGroup.getTablesAndColumns();
 
-        Collections.sort(expectedTableList);
-        Collections.sort(actualTableList);
+    System.out.println(actualTableList.get(0).getColumns());
+    sortList(actualTableList.get(0).getColumns());
+    System.out.println(actualTableList.get(0).getColumns());
+
+}
+
+    private void assertTwoTableListsAreEqual(List<Table> expectedTableList, List<Table> actualTableList){
+
+        //Collections.sort(expectedTableList);
+        //Collections.sort(actualTableList);
+        sortList(expectedTableList);
+        sortList(actualTableList);
 
         Assert.assertThat("Mismatch in sizes of expected and actual table lists.", expectedTableList.size(), is(actualTableList.size()));
 
@@ -134,14 +164,19 @@ public class AvroSchemaGroupTest
 
             Assert.assertThat("Mismatch in expected and actual table name.", tablePair.get(EXPECTED_INDEX).getTableName(), is(tablePair.get(ACTUAL_INDEX).getTableName()));
 
-            Collections.sort(tablePair.get(EXPECTED_INDEX).getColumns());
-            Collections.sort(tablePair.get(ACTUAL_INDEX).getColumns());
+            sortList(tablePair.get(EXPECTED_INDEX).getColumns());
+            sortList(tablePair.get(ACTUAL_INDEX).getColumns());
 
             Assert.assertThat("Mismatch in sizes of expected and actual column lists.", tablePair.get(EXPECTED_INDEX).getColumns().size(), is(tablePair.get(ACTUAL_INDEX).getColumns().size()));
             Assert.assertThat("Column lists have different values.", tablePair.get(EXPECTED_INDEX).getColumns(), is(tablePair.get(ACTUAL_INDEX).getColumns()));
         }
+    }
 
-        return true;
+
+    private <T extends Comparable<T>> void sortList(List<T> listToBeSorted) {
+        if (listToBeSorted != null){
+            Collections.sort(listToBeSorted);
+        }
     }
 
     private AvroSchemaGroup getAvroSchemaGroup(String sourceSchemaDirectory) throws IOException {
