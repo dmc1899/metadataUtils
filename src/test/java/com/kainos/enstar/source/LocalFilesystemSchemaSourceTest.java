@@ -1,119 +1,30 @@
-package com.kainos.enstar.driver;
+package com.kainos.enstar.source;
 
-import com.kainos.enstar.source.SchemaSource;
 import com.kainos.enstar.common.Table;
 import com.kainos.enstar.schema.AvroSchemaGroup;
 import org.apache.avro.Schema;
-import org.junit.Test;
 import org.junit.Assert;
-
-import org.hamcrest.collection.IsMapContaining;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.MatcherAssert.assertThat;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 
 /**
- * Unit test for simple App.
+ *
  */
-public class AppTest
+public class LocalFilesystemSchemaSourceTest
 {
-    @Test
-    public void testValidCommentForSingleSchema() throws Exception {
-        String thisPath = this.getClass().getClassLoader().getResource("").getPath();
-
-        AvroSchemaGroup myAvroSchemaGroup = new AvroSchemaGroup(new MySchemaSource(thisPath + "/singlevalidavroschema/"));
-        Map<String, String> actualSchemaComments = new HashMap<String, String>();
-        actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
-
-        Map<String, String> expectedTableComment = new HashMap<String, String>();
-        expectedTableComment.put("policy", "Transaction table will contain all forms of transactions at policy / section level. TransactionType values should be used to group them appropriately. Signage of the amount consistently mapped across all the source systems transactions loaded into here.");
-
-        Assert.assertThat("Failed to return schema comments as expected.", actualSchemaComments, is(expectedTableComment));
-
-        Assert.assertThat("Failed to return expected number of records in map.", actualSchemaComments.size(), is(1));
-    }
 
     @Test
-    public void testValidCommentForMultipleSchemas() throws Exception {
-        String thisPath = this.getClass().getClassLoader().getResource("").getPath();
+    public void testValidSchemaSourceRetrieval(){
 
-        AvroSchemaGroup myAvroSchemaGroup = new AvroSchemaGroup(new MySchemaSource(thisPath + "/multiplevalidavroschemas/"));
-        Map<String, String> actualSchemaComments = new HashMap<String, String>();
-        actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
-
-        Map<String, String> expectedTableComment = new HashMap<String, String>();
-        expectedTableComment.put("policy", "Transaction table will contain all forms of transactions at policy / section level. TransactionType values should be used to group them appropriately. Signage of the amount consistently mapped across all the source systems transactions loaded into here.");
-        expectedTableComment.put("claim", "Centralizes all the information, contacts, and business activities associated with a claimant's loss. The Claim entity is the primary object in the claim data model");
-
-        Assert.assertThat("Failed to return schema comments as expected.", actualSchemaComments, is(expectedTableComment));
-
-        Assert.assertThat("Failed to return expected number of records in map.", actualSchemaComments.size(), is(2));
     }
-
-    @Test
-    public void testEmptyStringCommentForSingleSchema() throws Exception {
-        String thisPath = this.getClass().getClassLoader().getResource("").getPath();
-
-        AvroSchemaGroup myAvroSchemaGroup = new AvroSchemaGroup(new MySchemaSource(thisPath + "/singleavroschemablankcomment/"));
-        Map<String, String> actualSchemaComments = new HashMap<String, String>();
-        actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
-
-        Map<String, String> expectedTableComment = new HashMap<String, String>();
-        expectedTableComment.put("policy", "");
-
-        Assert.assertThat("Failed to return schema comments as expected.", actualSchemaComments, is(expectedTableComment));
-
-        Assert.assertThat("Failed to return expected number of records in map.", actualSchemaComments.size(), is(1));
-    }
-
-    @Test
-    public void testNoCommentFieldForOneSchema() throws Exception {
-        String thisPath = this.getClass().getClassLoader().getResource("").getPath();
-
-        AvroSchemaGroup myAvroSchemaGroup = new AvroSchemaGroup(new MySchemaSource(thisPath + "/singleavroschemanocomment/"));
-        Map<String, String> actualSchemaComments = new HashMap<String, String>();
-        actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
-
-        Map<String, String> expectedTableComment = new HashMap<String, String>();
-        expectedTableComment.put("policy",  null);
-
-        Assert.assertThat("Failed to return schema comments as expected.", actualSchemaComments, is(expectedTableComment));
-
-        Assert.assertThat("Failed to return expected number of records in map.", actualSchemaComments.size(), is(1));
-    }
-
-    @Test
-    public void testNoCommentFieldForOneOfTwoSchemas() throws Exception {
-        String thisPath = this.getClass().getClassLoader().getResource("").getPath();
-
-        AvroSchemaGroup myAvroSchemaGroup = new AvroSchemaGroup(new MySchemaSource(thisPath + "/singleavroschemanocommentoneoftwo/"));
-        Map<String, String> actualSchemaComments = new HashMap<String, String>();
-        actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
-
-        Map<String, String> expectedTableComment = new HashMap<String, String>();
-        expectedTableComment.put("policy",  null);
-        expectedTableComment.put("claim", "Centralizes all the information, contacts, and business activities associated with a claimant's loss. The Claim entity is the primary object in the claim data model");
-
-
-        Assert.assertThat("Failed to return schema comments as expected.", actualSchemaComments, is(expectedTableComment));
-
-        Assert.assertThat("Failed to return expected number of records in map.", actualSchemaComments.size(), is(2));
-    }
-
-
-
-
-
-
-
-
-
 
     @Test
     public void testDuplicateAvroSchemas() throws Exception{

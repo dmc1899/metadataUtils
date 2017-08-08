@@ -1,21 +1,21 @@
 package com.kainos.enstar.directorytometastore.metastoreclient;
 
-import org.apache.thrift.TException;
+import TOBEREMOVED.Database;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.hive.conf.HiveConf;
 import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
-import org.apache.hadoop.hive.metastore.api.Table;
 import org.apache.hadoop.hive.metastore.api.InvalidOperationException;
 import org.apache.hadoop.hive.metastore.api.MetaException;
-
-import TOBEREMOVED.Database;
-//import com.kainos.enstar.common.model.Table;
+import org.apache.hadoop.hive.metastore.api.Table;
+import org.apache.thrift.TException;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+//import com.kainos.enstar.common.model.Table;
 
 /**
  * Created by darragh on 16/03/2017.
@@ -35,9 +35,9 @@ public class HiveMetastore implements Metastore {
 
     public void updateDatabaseTableDescriptions(Database database){
 
-    };
+    }
 
-    private void updateTableDescription(Table table){};
+    private void updateTableDescription(Table table){}
 
     private void updateHiveMetastore() {
         // Create Hive Metastore client

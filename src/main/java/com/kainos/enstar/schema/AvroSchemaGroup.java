@@ -1,11 +1,10 @@
 package com.kainos.enstar.schema;
 
-import java.util.*;
-
+import com.kainos.enstar.common.Table;
+import com.kainos.enstar.source.SchemaSource;
 import org.apache.avro.Schema;
 
-import com.kainos.enstar.source.SchemaSource;
-import com.kainos.enstar.common.Table;
+import java.util.*;
 
 /**
  * Created by darragh on 16/03/2017.
@@ -16,14 +15,12 @@ public class AvroSchemaGroup implements SchemaGroup {
 
     private ArrayList<Schema> schemas = null;
 
-    public AvroSchemaGroup(SchemaSource schemaSource) throws Exception{
-
+    public AvroSchemaGroup(SchemaSource schemaSource){
         this.schemas = schemaSource.getSchemas();
     }
 
-
     public Map<String,String> getTablesAndComments(){
-        Map<String,String> tablesAndComments = new HashMap<String, String>();
+        Map<String,String> tablesAndComments = new HashMap<>();
 
         for (Schema schema : this.schemas) {
             String tableName = schema.getName();
@@ -34,19 +31,17 @@ public class AvroSchemaGroup implements SchemaGroup {
         return tablesAndComments;
     }
 
-
     public List<Table> getTablesAndPrimaryKeyColumns(String primaryKeyStringIdentifier){
 
-        String primaryKeyToken = primaryKeyStringIdentifier;
-        Table table = null;
-        List<Table> tablesWithPkColumnsOnly = new ArrayList<Table>();
+        Table table;
+        List<Table> tablesWithPkColumnsOnly = new ArrayList<>();
 
         for (Schema schema : this.schemas) {
             table = new Table();
             table.setTableName(schema.getName());
             table.setComment(schema.getDoc());
 
-            List<String> primaryKeyfields = new ArrayList<String>();
+            List<String> primaryKeyfields = new ArrayList<>();
 
             for (Schema.Field field : schema.getFields()) {
                 String fieldComment = field.doc();
@@ -54,7 +49,7 @@ public class AvroSchemaGroup implements SchemaGroup {
                 System.out.println(field.doc() + field.name());
 
                 if (fieldComment != null) {
-                    if (fieldComment.contains(primaryKeyToken)) {
+                    if (fieldComment.contains(primaryKeyStringIdentifier)) {
                         primaryKeyfields.add(fieldName);
                     }
                 }

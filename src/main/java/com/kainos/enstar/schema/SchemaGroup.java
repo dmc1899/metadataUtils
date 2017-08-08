@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by darragh on 16/03/2017.
  */
 public interface SchemaGroup {
-    public Map<String,String> getTablesAndComments();
+    Map<String,String> getTablesAndComments();
 
-    public List<Table> getTablesAndPrimaryKeyColumns(String primaryKeyStringIdentifier);
+    List<Table> getTablesAndPrimaryKeyColumns(String primaryKeyStringIdentifier);
 }

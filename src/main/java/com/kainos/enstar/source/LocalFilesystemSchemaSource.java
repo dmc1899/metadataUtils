@@ -5,17 +5,15 @@ import org.apache.avro.Schema;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by darragh on 03/08/2017.
  */
 public class LocalFilesystemSchemaSource implements SchemaSource {
 
-    private File directory = null;
     private int fileCount = 0;
-    private Schema.Parser schemaParser = null;
     private ArrayList<Schema> schemas = null;
-    private String primaryKeyToken = null;
 
     public LocalFilesystemSchemaSource(String pathToDirectoryContainingSchemaFiles) throws Exception {
 
@@ -25,7 +23,7 @@ public class LocalFilesystemSchemaSource implements SchemaSource {
         }
 
         File[] files = directory.listFiles();
-        int numFiles = files.length;
+        int numFiles = files != null ? files.length : 0;
         if (!(numFiles > 0)) {
             throw new IOException("No schema files available in: " + pathToDirectoryContainingSchemaFiles);
         }
@@ -52,20 +50,20 @@ public class LocalFilesystemSchemaSource implements SchemaSource {
         String previousNamespace = null;
         for (Schema schema : schemas) {
             String currentNamespace = schema.getNamespace();
-            if (currentNamespace != previousNamespace) {
+            if (!Objects.equals(currentNamespace, previousNamespace)) {
                 throw new Exception("Multiple namespaces identified: " + currentNamespace + " and " + previousNamespace);
             }
             previousNamespace = currentNamespace;
         }
 
-        this.directory = directory;
+        File directory1 = directory;
         this.fileCount = numFiles;
-        this.schemaParser = schemaParser;
+        Schema.Parser schemaParser1 = schemaParser;
         this.schemas = schemas;
     }
 
     public void setPrimaryKeyToken(String token){
-        primaryKeyToken = token;
+        String primaryKeyToken = token;
     }
 
     public ArrayList<Schema> getSchemas() {

@@ -8,13 +8,13 @@ public class Column {
     private boolean isPrimaryKey;
     private String comment;
 
-    public String getColumnName(){return columnName;};
+    public String getColumnName(){return columnName;}
 
     public void setColumnName(String columnName){
         this.columnName = columnName;
     }
 
-    public boolean isFieldPrimaryKey(){return isPrimaryKey;};
+    public boolean isFieldPrimaryKey(){return isPrimaryKey;}
 
     public void setFieldAsPrimaryKey(boolean keyIndicator){
         this.isPrimaryKey = keyIndicator;

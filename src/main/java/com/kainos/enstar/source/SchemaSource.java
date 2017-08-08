@@ -9,11 +9,11 @@ import java.util.ArrayList;
  */
 public interface SchemaSource {
 
-    public ArrayList<Schema> getSchemas();
+    ArrayList<Schema> getSchemas();
 
     //public void setPrimaryKeyToken(String token);
 
     //public String getPrimaryKeyToken();
 
-    public int getNumberOfSchemas();
+    int getNumberOfSchemas();
 }

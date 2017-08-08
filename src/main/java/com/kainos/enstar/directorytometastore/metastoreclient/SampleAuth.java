@@ -1,11 +1,7 @@
 package com.kainos.enstar.directorytometastore.metastoreclient;
 
-import java.util.List;
-
 import org.apache.hadoop.conf.Configuration;
-
 import org.apache.hadoop.hive.conf.HiveConf;
-
 import org.apache.hadoop.hive.metastore.HiveMetaStoreClient;
 import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hive.hcatalog.api.HCatClient;
@@ -14,6 +10,8 @@ import org.apache.hive.hcatalog.common.HCatConstants;
 import org.apache.hive.hcatalog.common.HCatException;
 import org.apache.hive.hcatalog.data.schema.HCatFieldSchema;
 import org.apache.hive.hcatalog.data.schema.HCatSchema;
+
+import java.util.List;
 
 public class SampleAuth {
     public static void main(String[] args) {
