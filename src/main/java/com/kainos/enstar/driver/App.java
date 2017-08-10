@@ -1,16 +1,12 @@
 package com.kainos.enstar.driver;
 
 
-import com.kainos.enstar.common.Table;
-import com.kainos.enstar.schema.AvroSchemaGroup;
 import org.apache.avro.Schema;
 import org.apache.log4j.Logger;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.kainos.enstar.common.Utils.sortListSafely;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -94,11 +90,20 @@ System.out.println(e.getMessage());
 
     public void testSort() throws Exception{
         //AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("/singlevalidavroschema/");
-       // List<Table> actualTableList = myAvroSchemaGroup.getTablesAndColumns();
+       // List<TableDefinition> actualTableList = myAvroSchemaGroup.getTablesAndColumns();
 
-        /*System.out.println(actualTableList.get(0).getColumns());
-        sortListSafely(actualTableList.get(0).getColumns());
-        System.out.println(actualTableList.get(0).getColumns());*/
+        /*System.out.println(actualTableList.get(0).getColumnDefinitionList());
+        sortListSafely(actualTableList.get(0).getColumnDefinitionList());
+        System.out.println(actualTableList.get(0).getColumnDefinitionList());*/
 
+    }
+
+    private void testReadAndWriteAvroSchemaDocumentation() throws IOException {
+        String json = "{\"type\": \"record\", \"name\": \"r\", \"doc\": \"this is documentation!\", \"fields\": ["
+                + "{ \"name\": \"f1\", \"type\": \"long\" }"
+                + "]}";
+        Schema.Parser s = new Schema.Parser();
+        Schema schema = s.parse(json);
+        System.out.println(schema.getDoc());
     }
 }

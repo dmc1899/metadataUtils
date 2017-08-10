@@ -1,7 +1,7 @@
 package com.kainos.enstar.schema;
 
 import com.kainos.enstar.common.Table;
-
+import com.kainos.enstar.dto.DatabaseDefinition;
 import com.kainos.enstar.source.SchemaSource;
 import org.apache.avro.Schema;
 
@@ -14,12 +14,14 @@ import java.util.*;
  */
 public class AvroSchemaGroup implements SchemaGroup {
 
-    private ArrayList<Schema> schemas = null;
+    private List<Schema> schemas = Collections.emptyList();
+    private DatabaseDefinition databaseDefinition;
 
     public AvroSchemaGroup(SchemaSource schemaSource){
         this.schemas = schemaSource.getSchemas();
     }
 
+    //TODO Replace the Map with our own implementation of perhaps a Collection of TableComments?
     public Map<String,String> getTablesAndComments(){
         Map<String,String> tablesAndComments = new HashMap<>();
 
@@ -32,6 +34,7 @@ public class AvroSchemaGroup implements SchemaGroup {
         return tablesAndComments;
     }
 
+    //TODO Replace the List with our own Collection of Tables?
     public List<Table> getTablesAndPrimaryKeyColumns(String primaryKeyStringIdentifier){
 
         Table table;
@@ -39,7 +42,7 @@ public class AvroSchemaGroup implements SchemaGroup {
 
         for (Schema schema : this.schemas) {
             table = new Table();
-            table.setTableName(schema.getName());
+            table.setName(schema.getName());
             table.setComment(schema.getDoc());
 
             List<String> primaryKeyfields = new ArrayList<>();
@@ -69,7 +72,7 @@ public class AvroSchemaGroup implements SchemaGroup {
 
         for (Schema schema : this.schemas) {
             table = new Table();
-            table.setTableName(schema.getName());
+            table.setName(schema.getName());
             table.setComment(schema.getDoc());
 
             List<String> fields = new ArrayList<>();

@@ -13,4 +13,8 @@ public class Utils {
             Collections.sort(listToBeSorted);
         }
     }
+
+    public static String buildPathToTestInputData(String relativePathToInputFiles) {
+        return Utils.class.getClassLoader().getResource("").getPath() + relativePathToInputFiles;
+    }
 }

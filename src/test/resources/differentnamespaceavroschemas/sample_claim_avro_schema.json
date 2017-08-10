@@ -2,13 +2,13 @@
   "namespace": "ecm",
   "type": "record",
   "name": "claim",
-  "namespace" : "eclipse_tactical",
+  "namespace" : "eclipse_strategic",
   "doc": "Centralizes all the information, contacts, and business activities associated with a claimant's loss. The Claim entity is the primary object in the claim data model",
   "fields": [
     {
       "name": "record_validfrom",
       "type": [ "null", "string" ],
-      "doc":  "System field",
+      "doc":  "PK - System field",
       "default" : null
     },
     {

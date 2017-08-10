@@ -1,10 +1,12 @@
 package com.kainos.enstar.source;
 
 import org.apache.avro.Schema;
+import org.apache.avro.SchemaParseException;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -12,20 +14,55 @@ import java.util.Objects;
  */
 public class LocalFilesystemSchemaSource implements SchemaSource {
 
-    private int fileCount = 0;
-    private ArrayList<Schema> schemas = null;
+    private List<Schema> schemas = null;
 
-    public LocalFilesystemSchemaSource(String pathToDirectoryContainingSchemaFiles) throws Exception {
-
+    public LocalFilesystemSchemaSource(String pathToDirectoryContainingSchemaFiles, boolean enforceSingleNamespace) throws IOException, SchemaParseException {
         File directory = new File(pathToDirectoryContainingSchemaFiles);
-        if (!directory.exists() || (!directory.isDirectory())) {
-            throw new IOException("Unable to read from specified directory: " + pathToDirectoryContainingSchemaFiles);
-        }
 
+        validateDirectory(directory);
+        validateDirectoryContents(directory);
+
+        List<Schema> schemas = loadSchemasFromLocation(directory);
+        if (enforceSingleNamespace) {validateSchemaNamespaces(schemas);}
+
+        this.schemas = schemas;
+    }
+
+    public List<Schema> getSchemas() {
+        return schemas;
+    }
+
+    private void validateSchemaNamespaces(List<Schema> schemas) {
+        String previousNamespace = null;
+
+        for (int currentSchemaIndex = 0; currentSchemaIndex < schemas.size(); currentSchemaIndex++){
+            String currentNamespace = schemas.get(currentSchemaIndex).getNamespace();
+            if (currentSchemaIndex > 0){
+                if (!Objects.equals(currentNamespace, previousNamespace)) {
+                    throw new SchemaParseException("Multiple namespaces identified: " + currentNamespace + " and " + previousNamespace + ". Only one namespace must be present in each Schema Source.");
+                }
+            }
+            previousNamespace = currentNamespace;
+        }
+    }
+
+    private List<Schema> loadSchemasFromLocation(File directory) throws IOException {
+        Schema.Parser schemaParser = new Schema.Parser();
+        List<Schema> schemas = new ArrayList<>();
+
+        for (File schemaFile : directory.listFiles()) {
+            Schema schema = schemaParser.parse(schemaFile);
+            schemas.add(schema);
+        }
+        return schemas;
+    }
+
+    private void validateDirectoryContents(File directory) throws IOException {
         File[] files = directory.listFiles();
         int numFiles = files != null ? files.length : 0;
+
         if (!(numFiles > 0)) {
-            throw new IOException("No schema files available in: " + pathToDirectoryContainingSchemaFiles);
+            throw new IOException("No schema files available in location: " + directory.getPath());
         }
 
         int numReadableFiles = 0;
@@ -37,50 +74,11 @@ public class LocalFilesystemSchemaSource implements SchemaSource {
         if (!(numReadableFiles == numFiles)) {
             throw new IOException("Unable to read " + Integer.toString(numFiles - numReadableFiles) + " of " + Integer.toString(numFiles) + " files.");
         }
+    }
 
-        Schema.Parser schemaParser = new Schema.Parser();
-        ArrayList<Schema> schemas = new ArrayList<Schema>();
-
-
-        for (File schemaFile : directory.listFiles()) {
-            Schema schema = schemaParser.parse(schemaFile);
-            schemas.add(schema);
+    private void validateDirectory(File directory) throws IOException {
+        if ((!directory.exists()) || (!directory.isDirectory())) {
+            throw new IOException("Unable to read from specified directory: " + directory.getPath());
         }
-
-        String previousNamespace = null;
-        for (int i = 0; i < schemas.size(); i++){
-            String currentNamespace = schemas.get(i).getNamespace();
-            if (i > 0){
-                if (!Objects.equals(currentNamespace, previousNamespace)) {
-                    throw new Exception("Multiple namespaces identified: " + currentNamespace + " and " + previousNamespace);
-                }
-            }
-            previousNamespace = currentNamespace;
-        }
-
-        /*/ We expect one unique name space per source location.
-
-        for (Schema schema : schemas) {
-            String currentNamespace = schema.getNamespace();
-            if (!Objects.equals(currentNamespace, previousNamespace)) {
-                throw new Exception("Multiple namespaces identified: " + currentNamespace + " and " + previousNamespace);
-            }
-            previousNamespace = currentNamespace;
-        }*/
-
-        this.fileCount = numFiles;
-        this.schemas = schemas;
-    }
-
-    public void setPrimaryKeyToken(String token){
-        String primaryKeyToken = token;
-    }
-
-    public ArrayList<Schema> getSchemas() {
-        return schemas;
-    }
-
-    public int getNumberOfSchemas(){
-        return this.fileCount;
     }
 }

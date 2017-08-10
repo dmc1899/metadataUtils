@@ -1,0 +1,2099 @@
+{
+  "type" : "record",
+  "name" : "policy",
+  "namespace" : "eclipse_tactical",
+  "doc" : "Transaction table will contain all forms of transactions at policy / section level. TransactionType values should be used to group them appropriately. Signage of the amount consistently mapped across all the source systems transactions loaded into here.",
+  "fields" : [ {
+    "name" : "programref",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 15
+    } ],
+    "doc":  "This is the comment for the first field called programref.",
+    "default" : null
+  }, {
+    "name" : "layernum",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "statsccyroe",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 7
+    } ],
+    "doc":  "PK - this is the first part of the primary key for policy",
+    "default" : null
+  }, {
+    "name" : "annivdate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "daysnotice",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "uw",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 8
+    } ],
+    "default" : null
+  }, {
+    "name" : "interest",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "policyid",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "policyref",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 15
+    } ],
+    "default" : null
+  }, {
+    "name" : "entrytype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "decref",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 15
+    } ],
+    "doc":  "PK - this is the second part of the primary key for policy",
+    "default" : null
+  }, {
+    "name" : "lloydsbrokerid",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "lloydsbrokerref",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 15
+    } ],
+    "default" : null
+  }, {
+    "name" : "lloydsbrokercontactid",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "bucketind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "periodtype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "inceptiondate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "expirydate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "termsoftrade",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "datewritten",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "firstwritten",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "claimind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "brokerage",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "deductions",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "canceldate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "statsccyiso",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "consccyiso",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "constotalsyndepi",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "constotalsyndexposure",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "notes",
+    "type" : [ "null", "string" ],
+    "default" : null
+  }, {
+    "name" : "renewedfromref",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 15
+    } ],
+    "default" : null
+  }, {
+    "name" : "renewedtoref",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 15
+    } ],
+    "default" : null
+  }, {
+    "name" : "grosspremincome",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "comm",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "commmisc",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "covertype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "uniquemarketref",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 17
+    } ],
+    "default" : null
+  }, {
+    "name" : "placingtype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "wordingstatus",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "portfoliotransind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "lossofusedaily",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "lastupd",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "sectioncode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 15
+    } ],
+    "default" : null
+  }, {
+    "name" : "period",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "fulltermperiod",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "fullterminceptiondate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "fulltermexpirydate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "fulltermresignind",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "profitcomm",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "profitcomm2",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "commdeductionsind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "profitcommexpense",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "otherdeductions",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "premfreq",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "firstsettduedate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "setttermoftrade",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "adjtermsoftrade",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "covermaxperiod",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "commslideat",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "bordereaupremtermsoftrade",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "treatyreinsind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "coins",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "syslastupd",
+    "type" : [ "null", "string" ],
+    "default" : null
+  }, {
+    "name" : "noclaimbonus",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "earnpattern",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 9
+    } ],
+    "default" : null
+  }, {
+    "name" : "lossofuselimit",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "lossofusexs",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "lossofuseexposure",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "lossofuseccyiso",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "lossofusexsdsc",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "commslide",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "commslideprov",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "commslidelr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "commslidemin",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "bordereauclaimtermsoftrade",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "waitperiod",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "smokerind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "bordereauclaimfreq",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "sex",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "dateofbirth",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "quotasharepct",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "bordereaupremfreq",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "quotashareline",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 7,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "convertedind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "iptpct",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "iptpremapplic",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "repgroup",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "syspolicytype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 40
+    } ],
+    "default" : null
+  }, {
+    "name" : "totalsyndepi",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "totalsyndexposure",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "uwdivision",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "writebackpct",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "lloydsbrokercode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "lloydsbrokerpseud",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 4
+    } ],
+    "default" : null
+  }, {
+    "name" : "yoa",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "perilgroupid",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "territoryid",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "toplimit",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "toplimitccyiso",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "topxs",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "lossofusedays",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "insdate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "deldate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "otherdeductionsapplyind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "profitcommapplyind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "policytype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "benefitstype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "nooflives",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "grantee",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 200
+    } ],
+    "default" : null
+  }, {
+    "name" : "profitcommadj",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "policystatus",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 20
+    } ],
+    "default" : null
+  }, {
+    "name" : "parentpolicyid",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "cancbasis",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "remindfreq",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "reminddate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "remindmess",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 255
+    } ],
+    "default" : null
+  }, {
+    "name" : "remindemail",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 255
+    } ],
+    "default" : null
+  }, {
+    "name" : "territoryidassured",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "bestcode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "naiccode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "producer",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "class1",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "class2",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "class3",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "geogcode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "totalsuminsured",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "calcfromwritten",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "brokeragedeductionsind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "maxlimit",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "minxs",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "ratefixedind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "toplimitorigccyiso",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "toplimitorigamount",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "toplimitsettamount",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "toplimitconsamount",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "topxsorigamount",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "topxssettamount",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "topxsconsamount",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "consccyroe",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 15,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "toplimitsettccyiso",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "filcode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 4
+    } ],
+    "default" : null
+  }, {
+    "name" : "username",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 255
+    } ],
+    "default" : null
+  }, {
+    "name" : "agglimit",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "paymentmethod",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 20
+    } ],
+    "default" : null
+  }, {
+    "name" : "paymenttype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 20
+    } ],
+    "default" : null
+  }, {
+    "name" : "adjfreq",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "adjpcnt",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "adjdsc",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "adjdate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "dwagreed",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "claimfundind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "needrecalcind",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "profitcommagreed",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "class4",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "frontingind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "financeuwind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "nocind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "fulltermind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "endorsemntind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "facreinsind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "monitorpimind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "dateentered",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "updby",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "mainlayerind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "quotedurationdays",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "ultimatelossratio",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "accountspayable",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "benchmarkrating",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 6,
+      "scale" : 4
+    } ],
+    "default" : null
+  }, {
+    "name" : "instalmentperiod",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "initialtot",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "deferredtot",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "finaltot",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "confidentialnotes",
+    "type" : [ "null", "string" ],
+    "default" : null
+  }, {
+    "name" : "locind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 40
+    } ],
+    "default" : null
+  }, {
+    "name" : "reviewdate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "eventname",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 255
+    } ],
+    "default" : null
+  }, {
+    "name" : "eventmultiple",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "outdooreventind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "ltpind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "terrormiles",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "terrordays",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "zipcode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 10
+    } ],
+    "default" : null
+  }, {
+    "name" : "surveyfees",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "vetsfees",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "consultancyfees",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "expertfees",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "anticipatedlr",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 5,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "premwarrantyind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "wordingdate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "wordingnote",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "nettlineind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "reinstbrokerage",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "losswarrantytriggers",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "lossreviewpct",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "warind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "strikesind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "expensesind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "surveyind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "surveydate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "numofinstalment",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "settduedate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "quoteexpirydate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "quoteinceptiondate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "bureausettledind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "venuecity",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 50
+    } ],
+    "default" : null
+  }, {
+    "name" : "lorscode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 10
+    } ],
+    "default" : null
+  }, {
+    "name" : "noticetobrokerinsured",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "noticetobrokerinsureddate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "assuredsignoff",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 20
+    } ],
+    "default" : null
+  }, {
+    "name" : "assuredsignoffdate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "terrorismapccy",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "terrorismapamount",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "terrorismapreceived",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "terrorismapreceiveddate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "zonea",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "zoneb",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "zonec",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "zoned",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "businessinterruption",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "manyfacind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "eventperiod",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "eventperiodinception",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "eventperiodexpiry",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "premiumswitchdate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "premiumswitchedind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "retrodate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "minimumrate",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "maximumrate",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "lossesloaded",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 10,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "quotedrol",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "retroactivedate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "oldstatsref",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 12
+    } ],
+    "default" : null
+  }, {
+    "name" : "description",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 40
+    } ],
+    "default" : null
+  }, {
+    "name" : "externalref",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 20
+    } ],
+    "default" : null
+  }, {
+    "name" : "origpri",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 20,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "origci",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 20,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "updpri",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 20,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "updci",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 20,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "priind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "confiscationind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "outwardpolicyind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "peerreviewdate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "peerreviewind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "aggriskdata",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 30
+    } ],
+    "default" : null
+  }, {
+    "name" : "contractcertainty",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "contractcertaintyexcpt",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 40
+    } ],
+    "default" : null
+  }, {
+    "name" : "contractcertaintydate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "deficitclause",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 100
+    } ],
+    "default" : null
+  }, {
+    "name" : "trueprice",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 11,
+      "scale" : 7
+    } ],
+    "default" : null
+  }, {
+    "name" : "additionallines",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 15
+    } ],
+    "default" : null
+  }, {
+    "name" : "prilossratioorig",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "prilossratioupd",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "prinewoldpremorig",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 23,
+      "scale" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "prinewoldpremupd",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 23,
+      "scale" : 6
+    } ],
+    "default" : null
+  }, {
+    "name" : "anticipatedlossratio",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "risktransfer",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 30
+    } ],
+    "default" : null
+  }, {
+    "name" : "leadind",
+    "type" : [ "null", "boolean" ],
+    "default" : null
+  }, {
+    "name" : "manualmatchingind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "processingtype",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 5
+    } ],
+    "default" : null
+  }, {
+    "name" : "indexed",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 80
+    } ],
+    "default" : null
+  }, {
+    "name" : "commuteddate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "commutationoptdate",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 37
+    } ],
+    "default" : null
+  }, {
+    "name" : "verificationstatus",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 80
+    } ],
+    "default" : null
+  }, {
+    "name" : "cashlosslimit",
+    "type" : [ "null", {
+      "type" : "bytes",
+      "logicalType" : "decimal",
+      "precision" : 19,
+      "scale" : 2
+    } ],
+    "default" : null
+  }, {
+    "name" : "claimsagreement",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 40
+    } ],
+    "default" : null
+  }, {
+    "name" : "tradecode",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 12
+    } ],
+    "default" : null
+  }, {
+    "name" : "market",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 40
+    } ],
+    "default" : null
+  }, {
+    "name" : "brokersettledind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 3
+    } ],
+    "default" : null
+  }, {
+    "name" : "scheduletypeid",
+    "type" : [ "null", "int" ],
+    "default" : null
+  }, {
+    "name" : "dealreference",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 40
+    } ],
+    "default" : null
+  }, {
+    "name" : "externalref_comp",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 20
+    } ],
+    "default" : null
+  }, {
+    "name" : "externalref_foruniqueconstraint",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 20
+    } ],
+    "default" : null
+  }, {
+    "name" : "decref_foruniqueconstraint",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 15
+    } ],
+    "default" : null
+  }, {
+    "name" : "buaaind",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  }, {
+    "name" : "masterpolicy",
+    "type" : [ "null", {
+      "type" : "string",
+      "logicalType" : "varchar",
+      "maxLength" : 1
+    } ],
+    "default" : null
+  } ]
+}

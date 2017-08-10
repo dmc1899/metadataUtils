@@ -55,19 +55,19 @@ public class SampleAuth {
                 String tableType = tbl.getTabletype();
                 String tableName = tbl.getTableName();
                 System.out.println(tableType + " - " + tableName);
-                System.out.println("Table Name is: " + tableName);
-                System.out.println("Table Type is: " + tbl.getTabletype());
-                System.out.println("Table Props are: " + tbl.getTblProps());
+                System.out.println("TableDefinition Name is: " + tableName);
+                System.out.println("TableDefinition Type is: " + tbl.getTabletype());
+                System.out.println("TableDefinition Props are: " + tbl.getTblProps());
                 List<HCatFieldSchema> fields = tbl.getCols();
                 for (HCatFieldSchema f: fields) {
-                    System.out.println("Column Name is: " + f.getName());
-                    System.out.println("Column Type String is: " + f.getTypeString());
-                    System.out.println("Column Type Category is: " + f.getTypeString());
+                    System.out.println("ColumnDefinition Name is: " + f.getName());
+                    System.out.println("ColumnDefinition Type String is: " + f.getTypeString());
+                    System.out.println("ColumnDefinition Type Category is: " + f.getTypeString());
                     if (f.getCategory().equals(HCatFieldSchema.Category.STRUCT)) {
                         HCatSchema schema = f.getStructSubSchema();
                         List<String> structFields = schema.getFieldNames();
                         for (String fieldName: structFields) {
-                            System.out.println("Struct Column Name is: " + fieldName);
+                            System.out.println("Struct ColumnDefinition Name is: " + fieldName);
                         }
                     }
                 }
