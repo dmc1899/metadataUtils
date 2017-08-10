@@ -41,24 +41,34 @@ public class LocalFilesystemSchemaSource implements SchemaSource {
         Schema.Parser schemaParser = new Schema.Parser();
         ArrayList<Schema> schemas = new ArrayList<Schema>();
 
+
         for (File schemaFile : directory.listFiles()) {
             Schema schema = schemaParser.parse(schemaFile);
             schemas.add(schema);
         }
 
-        // We expect one unique name space per source location.
         String previousNamespace = null;
+        for (int i = 0; i < schemas.size(); i++){
+            String currentNamespace = schemas.get(i).getNamespace();
+            if (i > 0){
+                if (!Objects.equals(currentNamespace, previousNamespace)) {
+                    throw new Exception("Multiple namespaces identified: " + currentNamespace + " and " + previousNamespace);
+                }
+            }
+            previousNamespace = currentNamespace;
+        }
+
+        /*/ We expect one unique name space per source location.
+
         for (Schema schema : schemas) {
             String currentNamespace = schema.getNamespace();
             if (!Objects.equals(currentNamespace, previousNamespace)) {
                 throw new Exception("Multiple namespaces identified: " + currentNamespace + " and " + previousNamespace);
             }
             previousNamespace = currentNamespace;
-        }
+        }*/
 
-        File directory1 = directory;
         this.fileCount = numFiles;
-        Schema.Parser schemaParser1 = schemaParser;
         this.schemas = schemas;
     }
 

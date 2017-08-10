@@ -1,6 +1,7 @@
 package com.kainos.enstar.schema;
 
 import com.kainos.enstar.common.Table;
+
 import com.kainos.enstar.source.SchemaSource;
 import org.apache.avro.Schema;
 
@@ -46,7 +47,6 @@ public class AvroSchemaGroup implements SchemaGroup {
             for (Schema.Field field : schema.getFields()) {
                 String fieldComment = field.doc();
                 String fieldName = field.name();
-                System.out.println(field.doc() + field.name());
 
                 if (fieldComment != null) {
                     if (fieldComment.contains(primaryKeyStringIdentifier)) {

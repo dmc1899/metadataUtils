@@ -1,0 +1,392 @@
+{
+  "namespace": "ecm",
+  "type": "record",
+  "name": "claim",
+  "doc": "Centralizes all the information, contacts, and business activities associated with a claimant's loss. The Claim entity is the primary object in the claim data model",
+  "fields": [
+    {
+      "name": "record_validfrom",
+      "type": [ "null", "string" ],
+      "doc":  "PK - System field",
+      "default" : null
+    },
+    {
+      "name": "record_operation",
+      "type": [ "null", "string" ],
+      "doc": "System field",
+      "default": null
+    },
+    {
+      "name": "claimkey",
+      "type": [ "null", "string" ],
+      "doc":  "PK - cc_claim.PublicID",
+      "default" : null
+    },
+    {
+      "name": "exposurekey",
+      "type": [ "null", "string" ],
+      "doc":  "PK - Unique identifier from source, part of the PK.",
+      "default" : null
+    },
+    {
+      "name": "sourcesystemcode",
+      "type": [ "null", "string" ],
+      "doc":  "PK - The code associated with the source system that the record came from",
+      "default" : null
+    },
+    {
+      "name": "accidentyear",
+      "type": [ "null", "int" ],
+      "doc":  "Would normally be the calendar year of the ‘date of loss’ (DOL) but in the case of ‘Claims Made’ (CM) type policies, this would be the original notification date by the assured/reassured (Direct/RI) and NOT necessarily the date advised to Enstar",
+      "default" : null
+    },
+    {
+      "name": "policynumber",
+      "type": [ "null", "string" ],
+      "doc":  "Unique policy number, also known Policy Reference or Underwriting Reference",
+      "default" : null
+    },
+    {
+      "name": "coveragereference",
+      "type": [ "null", "string" ],
+      "doc":  "Coverage reference identifies unique coverages on a policy section, a section may contain multiple coverages. There is no data dictionary definition for this",
+      "default" : null
+    },
+    {
+      "name": "sectionreference",
+      "type": [ "null", "string" ],
+      "doc":  "Section reference identifies a unique section on a policy, a policy may contain multiple sections. There is no data dictionary definition for this",
+      "default" : null
+    },
+    {
+      "name": "claimantkey",
+      "type": [ "null", "string" ],
+      "doc":  "FK to Contact for the claimant",
+      "default" : null
+    },
+    {
+      "name": "claimantname",
+      "type": [ "null", "string" ],
+      "doc":  "Name of claimant",
+      "default" : null
+    },
+    {
+      "name": "claimantfirstname",
+      "type": [ "null", "string" ],
+      "doc":  "Claimants first name",
+      "default" : null
+    },
+    {
+      "name": "claimantlastname",
+      "type": [ "null", "string" ],
+      "doc":  "Claimants last name",
+      "default" : null
+    },
+    {
+      "name": "claimantreferencenumber",
+      "type": [ "null", "string" ],
+      "doc":  "Unique Reference for the Claimant",
+      "default" : null
+    },
+    {
+      "name": "claimclosedate",
+      "type": [ "null", "string" ],
+      "doc":  "The date a claim is either closed or re-closed",
+      "default" : null
+    },
+    {
+      "name": "claimcoveragecode",
+      "type": [ "null", "string" ],
+      "doc":  "PK - Unique identifier from source",
+      "default" : null
+    },
+    {
+      "name": "claimcoveragedescription",
+      "type": [ "null", "string" ],
+      "doc":  "Claim coverage description",
+      "default" : null
+    },
+    {
+      "name": "claimcreateddate",
+      "type": [ "null", "string" ],
+      "doc":  "The date on which the claim is created/opened in the Claims Administration System",
+      "default" : null
+    },
+    {
+      "name": "claimdescription",
+      "type": [ "null", "string" ],
+      "doc":  "Free format field used to describe the claim",
+      "default" : null
+    },
+    {
+      "name": "claimreopendate",
+      "type": [ "null", "string" ],
+      "doc":  "The date a claim is re-opened",
+      "default" : null
+    },
+    {
+      "name": "claimreopenedreasoncode",
+      "type": [ "null", "string" ],
+      "doc":  "The reason code for why a claim is re-opened",
+      "default" : null
+    },
+    {
+      "name": "claimreopenedreasondescription",
+      "type": [ "null", "string" ],
+      "doc":  "The description as to why a claim is re-opened",
+      "default" : null
+    },
+    {
+      "name": "claimreporteddate",
+      "type": [ "null", "string" ],
+      "doc":  "The date a claim was reported",
+      "default" : null
+    },
+    {
+      "name": "claimsectiondescription",
+      "type": [ "null", "string" ],
+      "doc":  "Description associated with the type of section for the claim e.g. Description for: General Aviation to Hull; Liability, Casuality International; to Public & Products, Professional Liability. Also known as minor class description",
+      "default" : null
+    },
+    {
+      "name": "claimsegmentcode",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "claimsegmentdescription",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "closedoutcomecode",
+      "type": [ "null", "string" ],
+      "doc":  "Code pertaining to the closure of the Loss Section",
+      "default" : null
+    },
+    {
+      "name": "closedoutcomedescription",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "commutationeffectivedate",
+      "type": [ "null", "string" ],
+      "doc":  "The effective date of the commutation",
+      "default" : null
+    },
+    {
+      "name": "commutationreleaseagreementdate",
+      "type": [ "null", "string" ],
+      "doc":  "The date of the Commutation Release Agreement",
+      "default" : null
+    },
+    {
+      "name": "commutationstatus",
+      "type": [ "null", "string" ],
+      "doc":  "Commutation is a settlement agreement reached between a reinsured and a reinsurer by which the reinsurance obligation is terminated by an agreement by the reinsurer to pay funds at present value that are not yet due under the reinsurance agreement",
+      "default" : null
+    },
+    {
+      "name": "currencycode",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "currencydescription",
+      "type": [ "null", "string" ],
+      "doc":  "The date on which the claim is first made in writing against the insured. In a claims-made setting, the insured could become aware of a potential loss in one policy period, but the claim could first be made in writing in a subsequent policy period",
+      "default" : null
+    },
+    {
+      "name": "dateoflossfrom",
+      "type": [ "null", "string" ],
+      "doc":  "The date when the loss occurred. The 'from' date is the first date of loss. In the event of a catastrophe, the date of loss can span over a number of days. If the date if loss is a single date, then the 'from' and 'to' dates will be the same date",
+      "default" : null
+    },
+    {
+      "name": "dateoflossto",
+      "type": [ "null", "string" ],
+      "doc":  "The date when the loss occurred. The 'to' date is the last date of loss. In the event of a catastrophe, the date of loss can span over a number of days If the date if loss is a single date, then the 'from' and 'to' dates will be the same date",
+      "default" : null
+    },
+    {
+      "name": "dateofnotificationtoinsured",
+      "type": [ "null", "string" ],
+      "doc":  "The date when the insured first became aware of the loss. This date could be the date the insured was served notice of legal proceedings, when the insured was approached by a claimant or when the loss was first observed",
+      "default" : null
+    },
+    {
+      "name": "exposurereopendate",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "exposuresegmentcode",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "exposuresegmentdescription",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "exposuretypecode",
+      "type": [ "null", "string" ],
+      "doc":  "PK - Unique identifier from source",
+      "default" : null
+    },
+    {
+      "name": "exposuretypedescription",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "exposureclosedate",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "incidentdescription",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "incidenttypecode",
+      "type": [ "null", "string" ],
+      "doc":  "PK - Unique identifier from source",
+      "default" : null
+    },
+    {
+      "name": "incidenttypedescription",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "internalclaimnumber",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "lineofbusinesscode",
+      "type": [ "null", "string" ],
+      "doc":  "Code associated with how the business is classified in the source policy administration system for the policy",
+      "default" : null
+    },
+    {
+      "name": "lineofbusinessdescription",
+      "type": [ "null", "string" ],
+      "doc":  "Description associated with how the business is classified in the source policy administration system for the policy",
+      "default" : null
+    },
+    {
+      "name": "legacyclaimnumber",
+      "type": [ "null", "string" ],
+      "doc":  "The original claim number from the legacy data source. There may be more than one per claim",
+      "default" : null
+    },
+    {
+      "name": "losscausecode",
+      "type": [ "null", "string" ],
+      "doc":  "Code associated with the cause of the loss (e.g. Fire, Road Collision, Loss of Arm). This can be aggregated up into Loss Types",
+      "default" : null
+    },
+    {
+      "name": "losscausedescription",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "losslocationgeographycode",
+      "type": [ "null", "string" ],
+      "doc":  "The place where the loss occurred",
+      "default" : null
+    },
+    {
+      "name": "lossreportdate",
+      "type": [ "null", "string" ],
+      "doc":  "The date on which the claim was first notified to us",
+      "default" : null
+    },
+    {
+      "name": "losstypecode",
+      "type": [ "null", "string" ],
+      "doc":  "Code associated with the type of loss incurred (e.g. Material Damage, Goods in Transit, Injury). This can be further split out into Loss Causes",
+      "default" : null
+    },
+    {
+      "name": "losstypedescription",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "naicannualstatementlineofbusinesscode",
+      "type": [ "null", "string" ],
+      "doc":  "Annual Statement Lines of Business (ASLOB) reported for National Association of Insurance Commissioners (NAIC) for the Claim Coverage",
+      "default" : null
+    },
+    {
+      "name": "notificationyear",
+      "type": [ "null", "int" ],
+      "doc":  "Year when the loss was notified",
+      "default" : null
+    },
+    {
+      "name": "reservesegmentcode",
+      "type": [ "null", "string" ],
+      "doc":  "The code relating to the reserve segment",
+      "default" : null
+    },
+    {
+      "name": "reservesegmentdescription",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    },
+    {
+      "name": "status",
+      "type": [ "null", "string" ],
+      "doc":  "The status of the claim (e.g. open, closed, re-opened, re-closed)",
+      "default" : null
+    },
+    {
+      "name": "sublineofbusinesscode",
+      "type": [ "null", "string" ],
+      "doc":  "The code associated with the Company's Sub Line of Business applicable to the risk",
+      "default" : null
+    },
+    {
+      "name": "sublineofbusinessdescription",
+      "type": [ "null", "string" ],
+      "doc":  "The description associated with the Company's Sub Line of Business applicable to the risk",
+      "default" : null
+    },
+    {
+      "name": "uniqueclaimreference",
+      "type": [ "null", "string" ],
+      "doc":  "The unique London Market reference associated with the claim",
+      "default" : null
+    },
+    {
+      "name": "workerscomplosslocationgeographycode",
+      "type": [ "null", "string" ],
+      "doc":  "",
+      "default" : null
+    }
+  ]
+}

@@ -4,7 +4,9 @@ import com.kainos.enstar.common.Table;
 import com.kainos.enstar.schema.AvroSchemaGroup;
 import org.apache.avro.Schema;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,18 +15,49 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsString;
 
 /**
  *
  */
 public class LocalFilesystemSchemaSourceTest
 {
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Test
-    public void testValidSchemaSourceRetrieval(){
+    public void getSingleInvalidSchemaFromSource() throws Exception {
+        String schemaDirectoryPath = this.getClass().getClassLoader().getResource("").getPath()+"/singleinvalidavroschema/";
 
+        thrown.expect(Exception.class);
+        LocalFilesystemSchemaSource schemaSource = new LocalFilesystemSchemaSource(schemaDirectoryPath);
     }
+
+    @Test
+    public void getSingleValidSchemaFromSource() throws Exception{
+        String schemaDirectoryPath = this.getClass().getClassLoader().getResource("").getPath()+"/singlevalidavroschema/";
+
+        File schemaDirectory = new File(schemaDirectoryPath);
+
+        Schema.Parser schemaParser = new Schema.Parser();
+        ArrayList<Schema> expectedSchemas = new ArrayList<Schema>();
+
+        for (File schemaFile : schemaDirectory.listFiles()) {
+            Schema schema = schemaParser.parse(schemaFile);
+            expectedSchemas.add(schema);
+        }
+
+        LocalFilesystemSchemaSource schemaSource = new LocalFilesystemSchemaSource(schemaDirectoryPath);
+        ArrayList<Schema> actualSchemas = new ArrayList<Schema>();
+        actualSchemas = schemaSource.getSchemas();
+
+        Assert.assertEquals(expectedSchemas, actualSchemas);
+    }
+
+
+    //TODO - write tests that assert an exception occurring.
 
     @Test
     public void testDuplicateAvroSchemas() throws Exception{
