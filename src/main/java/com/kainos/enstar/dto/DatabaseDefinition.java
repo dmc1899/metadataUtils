@@ -19,7 +19,6 @@ public class DatabaseDefinition implements Comparable<DatabaseDefinition> {
     public DatabaseDefinition (SchemaSource schemaSource){
         this.name = schemaSource.getName();
         this.description= schemaSource.getDescription();
-        this.tableDefinitionListAllColumns = new ArrayList<TableDefinition>();
 
         populateTableDefinitionLists(schemaSource);
     }
@@ -58,12 +57,15 @@ public class DatabaseDefinition implements Comparable<DatabaseDefinition> {
     //}
 
     private void populateTableDefinitionLists(SchemaSource schemaSource) {
+        this.tableDefinitionListAllColumns = new ArrayList<TableDefinition>();
+        this.tableDefinitionListPkColumns = new ArrayList<TableDefinition>();
+
         for (Schema schema : schemaSource.getSchemas()) {
             TableDefinitionAllColumns tableDefinitionAll = new TableDefinitionAllColumns(schema, schemaSource.getSchemaFieldPrimaryKeyIdentifier());
             this.tableDefinitionListAllColumns.add(tableDefinitionAll);
 
             TableDefinitionPkColumns tableDefinitionPk = new TableDefinitionPkColumns(schema, schemaSource.getSchemaFieldPrimaryKeyIdentifier());
-            this.tableDefinitionListAllColumns.add(tableDefinitionPk);
+            this.tableDefinitionListPkColumns.add(tableDefinitionPk);
         }
     }
 }
