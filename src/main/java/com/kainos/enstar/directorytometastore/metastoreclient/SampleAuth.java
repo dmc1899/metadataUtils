@@ -55,9 +55,9 @@ public class SampleAuth {
                 String tableType = tbl.getTabletype();
                 String tableName = tbl.getTableName();
                 System.out.println(tableType + " - " + tableName);
-                System.out.println("TableDefinition Name is: " + tableName);
-                System.out.println("TableDefinition Type is: " + tbl.getTabletype());
-                System.out.println("TableDefinition Props are: " + tbl.getTblProps());
+                System.out.println("TableDefinitionAllColumns Name is: " + tableName);
+                System.out.println("TableDefinitionAllColumns Type is: " + tbl.getTabletype());
+                System.out.println("TableDefinitionAllColumns Props are: " + tbl.getTblProps());
                 List<HCatFieldSchema> fields = tbl.getCols();
                 for (HCatFieldSchema f: fields) {
                     System.out.println("ColumnDefinition Name is: " + f.getName());

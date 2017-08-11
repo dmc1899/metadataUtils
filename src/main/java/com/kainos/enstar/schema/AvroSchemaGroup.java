@@ -3,7 +3,7 @@ package com.kainos.enstar.schema;
 import com.kainos.enstar.common.Table;
 import com.kainos.enstar.dto.DatabaseDefinition;
 import com.kainos.enstar.source.SchemaSource;
-import org.apache.avro.Schema;
+import com.kainos.enstar.dto.*;
 
 import java.util.*;
 
@@ -14,62 +14,42 @@ import java.util.*;
  */
 public class AvroSchemaGroup implements SchemaGroup {
 
-    private List<Schema> schemas = Collections.emptyList();
+    private SchemaSource schemaSource;
     private DatabaseDefinition databaseDefinition;
 
     public AvroSchemaGroup(SchemaSource schemaSource){
-        this.schemas = schemaSource.getSchemas();
+        this.schemaSource = schemaSource;
+        this.databaseDefinition = new DatabaseDefinition(schemaSource);
     }
 
-    //TODO Replace the Map with our own implementation of perhaps a Collection of TableComments?
-    public Map<String,String> getTablesAndComments(){
-        Map<String,String> tablesAndComments = new HashMap<>();
+    public DatabaseDefinition getDatabaseDefinition(){
+        return this.databaseDefinition;
+    }
 
-        for (Schema schema : this.schemas) {
-            String tableName = schema.getName();
-            String tableComment = schema.getDoc();
+    public String getName(){
+        return this.databaseDefinition.getName();
+    }
 
-            tablesAndComments.put(tableName, tableComment);
+    public Map<String, String> getTableNamesAndDescriptionsOnly(){
+        Map<String,String> tablesNamesAndDescriptions = new HashMap<>();
+
+        for (TableDefinition table : databaseDefinition.getTableDefinitionListAllColumns()){
+            tablesNamesAndDescriptions.put(table.getName(), table.getDescription());
         }
-        return tablesAndComments;
+        return tablesNamesAndDescriptions;
     }
 
     //TODO Replace the List with our own Collection of Tables?
-    public List<Table> getTablesAndPrimaryKeyColumns(String primaryKeyStringIdentifier){
-
-        Table table;
-        List<Table> tablesWithPkColumnsOnly = new ArrayList<>();
-
-        for (Schema schema : this.schemas) {
-            table = new Table();
-            table.setName(schema.getName());
-            table.setComment(schema.getDoc());
-
-            List<String> primaryKeyfields = new ArrayList<>();
-
-            for (Schema.Field field : schema.getFields()) {
-                String fieldComment = field.doc();
-                String fieldName = field.name();
-
-                if (fieldComment != null) {
-                    if (fieldComment.contains(primaryKeyStringIdentifier)) {
-                        primaryKeyfields.add(fieldName);
-                    }
-                }
-            }
-            Collections.sort(primaryKeyfields);
-            table.setColumns(primaryKeyfields);
-            tablesWithPkColumnsOnly.add(table);
-        }
-        Collections.sort(tablesWithPkColumnsOnly);
-        return tablesWithPkColumnsOnly;
+    public List<TableDefinition> getTablesAndPrimaryKeyColumns(){
+        List<TableDefinition> tableDefinitions = new ArrayList<TableDefinition>();
+        return tableDefinitions;
     }
 
-    public List<Table> getTablesAndColumns(){
+    public List<TableDefinition> getTablesAndAllColumns(){
 
         Table table;
-        List<Table> tablesWithColumns = new ArrayList<>();
-
+        List<TableDefinition> tablesWithColumns = new ArrayList<>();
+/*
         for (Schema schema : this.schemas) {
             table = new Table();
             table.setName(schema.getName());
@@ -89,7 +69,7 @@ public class AvroSchemaGroup implements SchemaGroup {
             table.setColumns(fields);
             tablesWithColumns.add(table);
         }
-        //Collections.sort(tablesWithColumns);
+        //Collections.sort(tablesWithColumns);*/
         return tablesWithColumns;
     }
 }

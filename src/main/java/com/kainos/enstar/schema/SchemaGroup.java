@@ -1,6 +1,7 @@
 package com.kainos.enstar.schema;
 
-import com.kainos.enstar.common.Table;
+import com.kainos.enstar.dto.TableDefinition;
+import com.kainos.enstar.dto.TableDefinitionAllColumns;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,9 @@ import java.util.Map;
  * Created by darragh on 16/03/2017.
  */
 public interface SchemaGroup {
-    Map<String,String> getTablesAndComments();
+    Map<String,String> getTableNamesAndDescriptionsOnly();
 
-    List<Table> getTablesAndPrimaryKeyColumns(String primaryKeyStringIdentifier);
+    List<TableDefinition> getTablesAndPrimaryKeyColumns();
+
+    List<TableDefinition> getTablesAndAllColumns();
 }

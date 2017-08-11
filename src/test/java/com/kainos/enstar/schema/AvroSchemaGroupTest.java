@@ -6,8 +6,12 @@ import org.apache.avro.Schema;
 import org.junit.Test;
 import org.junit.Assert;
 
+import static com.kainos.enstar.common.Utils.EMPTY_STRING;
+import static com.kainos.enstar.common.Utils.EMPTY_LIST;
+
 import static com.kainos.enstar.common.Utils.buildPathToTestInputData;
 import static com.kainos.enstar.common.Utils.sortListSafely;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -24,7 +28,7 @@ public class AvroSchemaGroupTest {
     @Test
     public void getValidCommentForSingleSchema() throws Exception {
         AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemaonecomment/");
-        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
+        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
 
         Map<String, String> expectedTableComment = new HashMap<>();
         expectedTableComment.put("policy", "Transaction table will contain all forms of transactions at policy / section level. TransactionType values should be used to group them appropriately. Signage of the amount consistently mapped across all the source systems transactions loaded into here.");
@@ -36,7 +40,7 @@ public class AvroSchemaGroupTest {
     @Test
     public void getValidCommentsForMultipleSchemas() throws Exception {
         AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("multiplevalidavroschemas/");
-        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
+        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
 
         Map<String, String> expectedTableComment = new HashMap<>();
         expectedTableComment.put("policy", "Transaction table will contain all forms of transactions at policy / section level. TransactionType values should be used to group them appropriately. Signage of the amount consistently mapped across all the source systems transactions loaded into here.");
@@ -49,7 +53,19 @@ public class AvroSchemaGroupTest {
     @Test
     public void getEmptyStringCommentForSingleSchema() throws Exception {
         AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemablankcomment/");
-        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
+        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
+
+        Map<String, String> expectedTableComment = new HashMap<>();
+        expectedTableComment.put("policy", EMPTY_STRING);
+
+        Assert.assertThat("Failed to return expected number of records in map.", actualSchemaComments.size(), is(1));
+        Assert.assertThat("Failed to return schema comments as expected.", actualSchemaComments, is(expectedTableComment));
+    }
+
+    @Test
+    public void getNoCommentFieldForOneSchema() throws Exception {
+        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanocomment/");
+        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
 
         Map<String, String> expectedTableComment = new HashMap<>();
         expectedTableComment.put("policy", "");
@@ -59,24 +75,12 @@ public class AvroSchemaGroupTest {
     }
 
     @Test
-    public void getNoCommentFieldForOneSchema() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanocomment/");
-        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
-
-        Map<String, String> expectedTableComment = new HashMap<>();
-        expectedTableComment.put("policy", null);
-
-        Assert.assertThat("Failed to return expected number of records in map.", actualSchemaComments.size(), is(1));
-        Assert.assertThat("Failed to return schema comments as expected.", actualSchemaComments, is(expectedTableComment));
-    }
-
-    @Test
     public void getNoCommentFieldForOneOfMultipleSchemas() throws Exception {
         AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanocommentoneoftwo/");
-        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTablesAndComments();
+        Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
 
         Map<String, String> expectedTableComment = new HashMap<>();
-        expectedTableComment.put("policy", null);
+        expectedTableComment.put("policy", "");
         expectedTableComment.put("claim", "Centralizes all the information, contacts, and business activities associated with a claimant's loss. The Claim entity is the primary object in the claim data model");
 
         Assert.assertThat("Failed to return expected number of records in map.", actualSchemaComments.size(), is(2));
@@ -93,7 +97,7 @@ public class AvroSchemaGroupTest {
         Collections.sort(expectedColumnList);
 
         //TODO replace the null table comment with a formal empty string.
-        Table expectedTable = new Table("policy", null, expectedColumnList);
+        Table expectedTable = new Table("policy", EMPTY_STRING, expectedColumnList);
 
         List<Table> expectedTableList = new ArrayList<>();
         expectedTableList.add(expectedTable);
@@ -109,7 +113,7 @@ public class AvroSchemaGroupTest {
         List<Table> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns("PKINVALID - ");
 
         List<String> actualColumnList = actualTableList.get(0).getColumns();
-        Table expectedTable = new Table("policy", null, null);
+        Table expectedTable = new Table("policy", EMPTY_STRING, Collections.EMPTY_LIST);
 
         Assert.assertEquals("Mismatched table name, expected :policy", expectedTable.getName(), actualTableList.get(0).getName());
         Assert.assertTrue("Failed to return an empty list of columns.", actualColumnList.isEmpty());
@@ -143,7 +147,7 @@ public class AvroSchemaGroupTest {
 
         List<String> expectedColumnList1 = Arrays.asList("claimcoveragecode", "exposuretypecode", "incidenttypecode", "record_validfrom", "record_operation", "claimkey", "exposurekey", "sourcesystemcode", "accidentyear");
         sortListSafely(expectedColumnList1);
-        Table expectedTable1 = new Table("claim", null, expectedColumnList1);
+        Table expectedTable1 = new Table("claim", EMPTY_STRING, expectedColumnList1);
         expectedTableList.add(expectedTable1);
 
         List<String> expectedColumnList2 = Arrays.asList("programref", "statsccyroe", "decref");
@@ -186,6 +190,12 @@ public class AvroSchemaGroupTest {
     private LocalFilesystemSchemaSource getMockLocalFilesystemSchemaSource(String relativePathForSchemas) throws IOException {
         File directory = new File(buildPathToTestInputData(relativePathForSchemas));
 
+        LocalFilesystemSchemaSource mockLocalFilesystemSchemaSource = mock(LocalFilesystemSchemaSource.class);
+
+        when(mockLocalFilesystemSchemaSource.getName()).thenReturn("Test Source Name");
+        when(mockLocalFilesystemSchemaSource.getDescription()).thenReturn("Test Source Description");
+        when(mockLocalFilesystemSchemaSource.getSchemaFieldPrimaryKeyIdentifier()).thenReturn("PK - ");
+
         Schema.Parser schemaParser = new Schema.Parser();
         List<Schema> schemas = new ArrayList<>();
 
@@ -194,7 +204,6 @@ public class AvroSchemaGroupTest {
             schemas.add(schema);
         }
 
-        LocalFilesystemSchemaSource mockLocalFilesystemSchemaSource = mock(LocalFilesystemSchemaSource.class);
         when(mockLocalFilesystemSchemaSource.getSchemas()).thenReturn(schemas);
 
         return mockLocalFilesystemSchemaSource;

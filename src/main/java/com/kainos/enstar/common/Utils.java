@@ -8,6 +8,9 @@ import java.util.List;
  */
 public class Utils {
 
+    public static final String EMPTY_STRING="";
+    public static final List<?> EMPTY_LIST = Collections.EMPTY_LIST;
+
     public static <T extends Comparable<T>> void sortListSafely(List<T> listToBeSorted) {
         if (listToBeSorted != null){
             Collections.sort(listToBeSorted);

@@ -4,9 +4,20 @@ package com.kainos.enstar.common;
  * Created by darragh on 07/08/2017.
  */
 public class Column {
-    private String columnName;
+  /*  private String columnName;
     private boolean isPrimaryKey;
     private String comment;
+
+    public static class Builder {
+
+        private String columnName;
+        private boolean isPrimaryKey;
+        private String comment;
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
 
     public String getColumnName(){return columnName;}
 
@@ -26,5 +37,5 @@ public class Column {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
+    }*/
 }

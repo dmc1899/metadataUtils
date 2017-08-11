@@ -6,6 +6,7 @@ import org.apache.avro.SchemaParseException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,9 +15,13 @@ import java.util.Objects;
  */
 public class LocalFilesystemSchemaSource implements SchemaSource {
 
-    private List<Schema> schemas = null;
+    private String name;
+    private String description;
+    private String schemaFieldPrimaryKeyIdentifier;
+    private List<Schema> schemas = Collections.EMPTY_LIST;
 
-    public LocalFilesystemSchemaSource(String pathToDirectoryContainingSchemaFiles, boolean enforceSingleNamespace) throws IOException, SchemaParseException {
+    public LocalFilesystemSchemaSource(String pathToDirectoryContainingSchemaFiles, String schemaFieldPrimaryKeyIdentifier, boolean enforceSingleNamespace) throws IOException, SchemaParseException {
+        this.schemaFieldPrimaryKeyIdentifier = schemaFieldPrimaryKeyIdentifier;
         File directory = new File(pathToDirectoryContainingSchemaFiles);
 
         validateDirectory(directory);
@@ -27,9 +32,18 @@ public class LocalFilesystemSchemaSource implements SchemaSource {
 
         this.schemas = schemas;
     }
+    public String getName(){return this.name;};
+
+    public String getDescription(){return this.description;};
 
     public List<Schema> getSchemas() {
         return schemas;
+    }
+
+    public String getSchemaFieldPrimaryKeyIdentifier(){return this.schemaFieldPrimaryKeyIdentifier;};
+
+    public void setSchemaFieldPrimaryKeyIdentifier(String schemaFieldPrimaryKeyIdentifier){
+        this.schemaFieldPrimaryKeyIdentifier = schemaFieldPrimaryKeyIdentifier;
     }
 
     private void validateSchemaNamespaces(List<Schema> schemas) {

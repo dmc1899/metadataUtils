@@ -90,7 +90,7 @@ System.out.println(e.getMessage());
 
     public void testSort() throws Exception{
         //AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("/singlevalidavroschema/");
-       // List<TableDefinition> actualTableList = myAvroSchemaGroup.getTablesAndColumns();
+       // List<TableDefinitionAllColumns> actualTableList = myAvroSchemaGroup.getTablesAndColumns();
 
         /*System.out.println(actualTableList.get(0).getColumnDefinitionList());
         sortListSafely(actualTableList.get(0).getColumnDefinitionList());
