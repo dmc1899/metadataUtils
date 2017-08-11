@@ -4,8 +4,9 @@ import com.kainos.enstar.dto.DatabaseDefinition;
 import com.kainos.enstar.dto.TableDefinition;
 import com.kainos.enstar.source.SchemaSource;
 
-
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Created by darragh on 16/03/2017.
@@ -45,6 +46,15 @@ public class AvroSchemaGroup implements SchemaGroup {
             tablesNamesAndDescriptions.put(table.getName(), table.getDescription());
         }
         return tablesNamesAndDescriptions;
+    }
+
+    public Map<String, Integer> getTableNamesAndNumberOfColumnsOnly(){
+        Map<String,Integer> tableNamesAndNumberOfColumns = new HashMap<>();
+
+        for (TableDefinition table : databaseDefinition.getTableDefinitionListAllColumns()){
+            tableNamesAndNumberOfColumns.put(table.getName(), table.getColumnDefinitionList().size());
+        }
+        return tableNamesAndNumberOfColumns;
     }
 }
 

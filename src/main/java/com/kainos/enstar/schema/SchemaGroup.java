@@ -10,9 +10,12 @@ import java.util.Map;
  * Created by darragh on 16/03/2017.
  */
 public interface SchemaGroup {
-    Map<String,String> getTableNamesAndDescriptionsOnly();
+    Map<String, String> getTableNamesAndDescriptionsOnly();
+
+    Map<String, Integer> getTableNamesAndNumberOfColumnsOnly();
 
     List<TableDefinition> getTablesAndPrimaryKeyColumns();
 
     List<TableDefinition> getTablesAndAllColumns();
+
 }

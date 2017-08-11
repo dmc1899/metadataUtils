@@ -2,7 +2,6 @@ package com.kainos.enstar.schema;
 
 import com.kainos.enstar.dto.ColumnDefinition;
 import com.kainos.enstar.dto.TableDefinition;
-import com.kainos.enstar.dto.TableDefinitionPkColumns;
 import com.kainos.enstar.source.LocalFilesystemSchemaSource;
 import com.kainos.enstar.common.Table;
 import org.apache.avro.Schema;
