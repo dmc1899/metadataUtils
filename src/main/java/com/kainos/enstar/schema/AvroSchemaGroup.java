@@ -2,7 +2,7 @@ package com.kainos.enstar.schema;
 
 import com.kainos.enstar.dto.DatabaseDefinition;
 import com.kainos.enstar.dto.TableDefinition;
-import com.kainos.enstar.source.SchemaSource;
+import com.kainos.enstar.source.SchemaSourcePrimitive;
 
 import java.util.List;
 import java.util.Map;
@@ -13,12 +13,12 @@ import java.util.HashMap;
  *
  * This class provides additional functionality for Avro schemas, such as identifying primary key columns.
  */
-public class AvroSchemaGroup implements SchemaGroup {
+public class AvroSchemaGroup implements SchemaGroupPrimitive, SchemaGroupComplex {
 
-    private SchemaSource schemaSource;
+    private SchemaSourcePrimitive schemaSource;
     private DatabaseDefinition databaseDefinition;
 
-    public AvroSchemaGroup(SchemaSource schemaSource){
+    public AvroSchemaGroup(SchemaSourcePrimitive schemaSource){
         this.schemaSource = schemaSource;
         this.databaseDefinition = new DatabaseDefinition(schemaSource);
     }

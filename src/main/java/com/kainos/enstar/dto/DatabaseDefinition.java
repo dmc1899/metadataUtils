@@ -1,6 +1,6 @@
 package com.kainos.enstar.dto;
 
-import com.kainos.enstar.source.SchemaSource;
+import com.kainos.enstar.source.SchemaSourcePrimitive;
 import org.apache.avro.Schema;
 
 import java.util.*;
@@ -16,7 +16,7 @@ public class DatabaseDefinition implements Comparable<DatabaseDefinition> {
     private List<TableDefinition> tableDefinitionListPkColumns = Collections.emptyList();
 
 
-    public DatabaseDefinition (SchemaSource schemaSource){
+    public DatabaseDefinition (SchemaSourcePrimitive schemaSource){
         this.name = schemaSource.getName();
         this.description= schemaSource.getDescription();
 
@@ -56,7 +56,7 @@ public class DatabaseDefinition implements Comparable<DatabaseDefinition> {
     //    this.tableDefinitionListAllColumns = tableDefs;
     //}
 
-    private void populateTableDefinitionLists(SchemaSource schemaSource) {
+    private void populateTableDefinitionLists(SchemaSourcePrimitive schemaSource) {
         this.tableDefinitionListAllColumns = new ArrayList<TableDefinition>();
         this.tableDefinitionListPkColumns = new ArrayList<TableDefinition>();
 

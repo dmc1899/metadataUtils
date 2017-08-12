@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * Created by darragh on 03/08/2017.
  */
-public class LocalFilesystemSchemaSource implements SchemaSource {
+public class LocalFilesystemSchemaSource implements SchemaSourcePrimitive, SchemaSourceComplex {
 
     private String name;
     private String description;
