@@ -1,13 +1,10 @@
 package com.kainos.enstar.dto;
 
 import com.kainos.enstar.SchemaUtils;
-import com.kainos.enstar.common.Table;
-import com.kainos.enstar.schema.AvroSchemaGroup;
-import com.kainos.enstar.schema.AvroSchemaGroupTest;
+import com.kainos.enstar.schema.AvroSchemaGroupComplex;
 import com.kainos.enstar.source.LocalFilesystemSchemaSourceComplex;
 import com.kainos.enstar.source.SchemaSourceComplex;
 import org.apache.avro.Schema;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
@@ -63,9 +60,9 @@ public class DatabaseDefinitionGrandParentTest {
         Assert.assertThat("Failed to return schema comments as expected.", actualSchemaComments, is(expectedTableComment));*/
     }
 
-    private AvroSchemaGroup getAvroSchemaGroup(String sourceSchemaDirectory) throws IOException {
+    private AvroSchemaGroupComplex getAvroSchemaGroup(String sourceSchemaDirectory) throws IOException {
         LocalFilesystemSchemaSourceComplex mockLocalFilesystemSchemaSource = getMockLocalFilesystemSchemaSource(sourceSchemaDirectory);
-        return new AvroSchemaGroup(mockLocalFilesystemSchemaSource);
+        return new AvroSchemaGroupComplex(mockLocalFilesystemSchemaSource);
     }
 
     private LocalFilesystemSchemaSourceComplex getMockLocalFilesystemSchemaSource(String relativePathForSchemas) throws IOException {

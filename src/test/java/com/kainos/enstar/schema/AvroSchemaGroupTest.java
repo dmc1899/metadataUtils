@@ -28,7 +28,7 @@ public class AvroSchemaGroupTest {
 
     @Test
     public void getValidCommentForSingleSchema() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemaonecomment/");
+        AvroSchemaGroupComplex myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemaonecomment/");
         Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
 
         Map<String, String> expectedTableComment = new HashMap<>();
@@ -40,7 +40,7 @@ public class AvroSchemaGroupTest {
 
     @Test
     public void getValidCommentsForMultipleSchemas() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("multiplevalidavroschemas/");
+        AvroSchemaGroupComplex myAvroSchemaGroup = getAvroSchemaGroup("multiplevalidavroschemas/");
         Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
 
         Map<String, String> expectedTableComment = new HashMap<>();
@@ -53,7 +53,7 @@ public class AvroSchemaGroupTest {
 
     @Test
     public void getEmptyStringCommentForSingleSchema() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemablankcomment/");
+        AvroSchemaGroupComplex myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemablankcomment/");
         Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
 
         Map<String, String> expectedTableComment = new HashMap<>();
@@ -65,7 +65,7 @@ public class AvroSchemaGroupTest {
 
     @Test
     public void getNoCommentFieldForOneSchema() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanocomment/");
+        AvroSchemaGroupComplex myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanocomment/");
         Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
 
         Map<String, String> expectedTableComment = new HashMap<>();
@@ -77,7 +77,7 @@ public class AvroSchemaGroupTest {
 
     @Test
     public void getNoCommentFieldForOneOfMultipleSchemas() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanocommentoneoftwo/");
+        AvroSchemaGroupComplex myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanocommentoneoftwo/");
         Map<String, String> actualSchemaComments = myAvroSchemaGroup.getTableNamesAndDescriptionsOnly();
 
         Map<String, String> expectedTableComment = new HashMap<>();
@@ -90,7 +90,7 @@ public class AvroSchemaGroupTest {
 
     @Test
     public void getOnePrimaryKeyFieldForOneSchema() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemaoneprimarykey/");
+        AvroSchemaGroupComplex myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemaoneprimarykey/");
 
         List<DefinitionParent> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns();
 
@@ -108,7 +108,7 @@ public class AvroSchemaGroupTest {
     /*
     @Test
     public void getNoPrimaryKeyFieldForOneSchema() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanoprimarykey/");
+        AvroSchemaGroupComplex myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanoprimarykey/");
 
         List<TableDefinitionParent> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns();
 
@@ -122,7 +122,7 @@ public class AvroSchemaGroupTest {
 
     @Test
     public void getMultiplePrimaryKeyFieldsForOneSchema() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemamultipleprimarykeys/");
+        AvroSchemaGroupComplex myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemamultipleprimarykeys/");
 
         List<TableDefinitionParent> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns();
 
@@ -140,7 +140,7 @@ public class AvroSchemaGroupTest {
 
     @Test
     public void getMultiplePrimaryKeyFieldsForMultipleSchemas() throws Exception {
-        AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("multipleavroschemasmultipleprimarykeys/");
+        AvroSchemaGroupComplex myAvroSchemaGroup = getAvroSchemaGroup("multipleavroschemasmultipleprimarykeys/");
 
         List<Table> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns("PK - ");
         List<Table> expectedTableList = new ArrayList<>();
@@ -182,9 +182,9 @@ public class AvroSchemaGroupTest {
         }
     }
 
-    private AvroSchemaGroup getAvroSchemaGroup(String sourceSchemaDirectory) throws IOException {
+    private AvroSchemaGroupComplex getAvroSchemaGroup(String sourceSchemaDirectory) throws IOException {
         LocalFilesystemSchemaSourceComplex mockLocalFilesystemSchemaSource = getMockLocalFilesystemSchemaSource(sourceSchemaDirectory);
-        return new AvroSchemaGroup(mockLocalFilesystemSchemaSource);
+        return new AvroSchemaGroupComplex(mockLocalFilesystemSchemaSource);
     }
 
     private LocalFilesystemSchemaSourceComplex getMockLocalFilesystemSchemaSource(String relativePathForSchemas) throws IOException {

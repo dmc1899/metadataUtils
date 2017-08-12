@@ -15,12 +15,12 @@ import java.util.HashMap;
  *
  * This class provides additional functionality for Avro schemas, such as identifying primary key columns.
  */
-public class AvroSchemaGroup implements SchemaGroupComplex {
+public class AvroSchemaGroupComplex implements SchemaGroupComplex {
 
     private SchemaSourcePrimitive schemaSource;
     private DatabaseDefinitionGrandParent databaseDefinition;
 
-    public AvroSchemaGroup(SchemaSourceComplex schemaSource){
+    public AvroSchemaGroupComplex(SchemaSourceComplex schemaSource){
         this.schemaSource = schemaSource;
         this.databaseDefinition = new DatabaseDefinitionGrandParent(schemaSource);
     }
