@@ -7,6 +7,6 @@ import java.util.List;
 /**
  * Created by darragh on 03/08/2017.
  */
-public interface SchemaSourceComplex {
+public interface SchemaSourceComplex extends SchemaSourcePrimitive{
     public List<Schema> getSchemas();
 }

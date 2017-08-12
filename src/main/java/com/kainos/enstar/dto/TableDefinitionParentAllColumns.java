@@ -9,9 +9,9 @@ import static com.kainos.enstar.common.Utils.EMPTY_STRING;
 /**
  * Created by darragh on 10/08/2017.
  */
-public class TableDefinitionAllColumns extends TableDefinition  {
+public class TableDefinitionParentAllColumns extends TableDefinitionParent {
 
-    public TableDefinitionAllColumns(Schema schema, String tokenUsedToIdentifyPrimaryKeyColumns) {
+    public TableDefinitionParentAllColumns(Schema schema, String tokenUsedToIdentifyPrimaryKeyColumns) {
         super();
         this.name = schema.getName();
         this.description = schema.getDoc() != null ? schema.getDoc() : EMPTY_STRING;
@@ -21,7 +21,7 @@ public class TableDefinitionAllColumns extends TableDefinition  {
 
     private void populateColumnDefinitionLists(Schema schema) {
 
-        this.columnDefinitionList = new ArrayList<ColumnDefinition>();
+        this.columnDefinitionList = new ArrayList<DefinitionChild>();
 
         for (Schema.Field field : schema.getFields()) {
             boolean isPrimaryKeyColumn = false;
@@ -31,7 +31,7 @@ public class TableDefinitionAllColumns extends TableDefinition  {
                 isPrimaryKeyColumn = true;
             }
 
-            ColumnDefinition columnDefinition = new ColumnDefinition(field, isPrimaryKeyColumn);
+            ColumnDefinitionChild columnDefinition = new ColumnDefinitionChild(field, isPrimaryKeyColumn);
             this.columnDefinitionList.add(columnDefinition);
         }
     }

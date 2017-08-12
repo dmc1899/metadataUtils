@@ -31,11 +31,11 @@ public class Column {
         this.isPrimaryKey = keyIndicator;
     }
 
-    public String getComment() {
+    public String getDescription() {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public void setDescription(String comment) {
         this.comment = comment;
     }*/
 }

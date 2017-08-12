@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by darragh on 09/08/2017.
  */
-public class Utils {
+public final class Utils {
 
     public static final String EMPTY_STRING="";
     public static final List<?> EMPTY_LIST = Collections.EMPTY_LIST;

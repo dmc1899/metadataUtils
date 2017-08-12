@@ -35,9 +35,9 @@ public class Table implements Comparable<Table> {
     public List<String> getColumns() { return this.columns;}
 
     public void setColumns(List<String> columns){ this.columns = columns;}
-    //public Map<String, ColumnDefinition> getColumnDefinitionList(){return columns;};
+    //public Map<String, ColumnDefinitionChild> getChildDefinitionList(){return columns;};
 
-        /*public void setColumnDefinitionList(HashMap<String, ColumnDefinition> columns){
+        /*public void setColumnDefinitionList(HashMap<String, ColumnDefinitionChild> columns){
             this.columns = columns;
         }*/
 

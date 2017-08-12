@@ -6,11 +6,11 @@ import java.util.List;
 /**
  * Created by darragh on 11/08/2017.
  */
-public abstract class TableDefinition implements Comparable<TableDefinition> {
+public abstract class TableDefinitionParent implements Comparable<TableDefinitionParent>, DefinitionParent {
     protected String name;
     protected String description;
     protected String tokenUsedToIdentifyPrimaryKeyColumns;
-    protected List<ColumnDefinition> columnDefinitionList = Collections.emptyList();
+    protected List<DefinitionChild> columnDefinitionList = Collections.emptyList();
 
     public String getName() {
         return name;
@@ -28,11 +28,11 @@ public abstract class TableDefinition implements Comparable<TableDefinition> {
         this.description = description;
     }
 
-    public List<ColumnDefinition> getColumnDefinitionList() {
+    public List<DefinitionChild> getChildDefinitionList() {
         return this.columnDefinitionList;
     }
 
-    public int compareTo(TableDefinition o) {
+    public int compareTo(TableDefinitionParent o) {
         return this.getName().compareTo(o.getName());
     }
 

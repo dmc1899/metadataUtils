@@ -1,15 +1,14 @@
 package com.kainos.enstar.schema;
 
-import com.kainos.enstar.dto.ColumnDefinition;
-import com.kainos.enstar.dto.TableDefinition;
-import com.kainos.enstar.source.LocalFilesystemSchemaSource;
+import com.kainos.enstar.dto.ColumnDefinitionChild;
+import com.kainos.enstar.dto.DefinitionParent;
+import com.kainos.enstar.source.LocalFilesystemSchemaSourceComplex;
 import com.kainos.enstar.common.Table;
 import org.apache.avro.Schema;
 import org.junit.Test;
 import org.junit.Assert;
 
 import static com.kainos.enstar.common.Utils.EMPTY_STRING;
-import static com.kainos.enstar.common.Utils.EMPTY_LIST;
 
 import static com.kainos.enstar.common.Utils.buildPathToTestInputData;
 import static com.kainos.enstar.common.Utils.sortListSafely;
@@ -93,14 +92,14 @@ public class AvroSchemaGroupTest {
     public void getOnePrimaryKeyFieldForOneSchema() throws Exception {
         AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemaoneprimarykey/");
 
-        List<TableDefinition> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns();
+        List<DefinitionParent> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns();
 
         Schema.Field mockSchemafield = mock(Schema.Field.class);
         when(mockSchemafield.name()).thenReturn("statsccyroe");
 
-        ColumnDefinition columnDefinition = new ColumnDefinition(mockSchemafield,true);
+        ColumnDefinitionChild columnDefinition = new ColumnDefinitionChild(mockSchemafield,true);
 
-        String actualColumnName = actualTableList.get(0).getColumnDefinitionList().get(0).getName();
+        String actualColumnName = actualTableList.get(0).getChildDefinitionList().get(0).getName();
         String expectedColumnName = columnDefinition.getName();
 
         Assert.assertEquals(actualColumnName, expectedColumnName);
@@ -111,7 +110,7 @@ public class AvroSchemaGroupTest {
     public void getNoPrimaryKeyFieldForOneSchema() throws Exception {
         AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemanoprimarykey/");
 
-        List<TableDefinition> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns();
+        List<TableDefinitionParent> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns();
 
         List<String> actualColumnList = actualTableList.get(0).getColumns();
         Table expectedTable = new Table("policy", EMPTY_STRING, Collections.EMPTY_LIST);
@@ -125,7 +124,7 @@ public class AvroSchemaGroupTest {
     public void getMultiplePrimaryKeyFieldsForOneSchema() throws Exception {
         AvroSchemaGroup myAvroSchemaGroup = getAvroSchemaGroup("singleavroschemamultipleprimarykeys/");
 
-        List<TableDefinition> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns();
+        List<TableDefinitionParent> actualTableList = myAvroSchemaGroup.getTablesAndPrimaryKeyColumns();
 
         List<String> expectedColumnList = Arrays.asList("decref", "programref", "statsccyroe");
         sortListSafely(expectedColumnList);
@@ -179,19 +178,19 @@ public class AvroSchemaGroupTest {
             sortListSafely(tablePairList.get(actualIndex).getColumns());
 
             Assert.assertThat("Mismatch in sizes of expected and actual column lists.", tablePairList.get(expectedIndex).getColumns().size(), is(tablePairList.get(actualIndex).getColumns().size()));
-            Assert.assertThat("ColumnDefinition lists have different values.", tablePairList.get(expectedIndex).getColumns(), is(tablePairList.get(actualIndex).getColumns()));
+            Assert.assertThat("ColumnDefinitionChild lists have different values.", tablePairList.get(expectedIndex).getColumns(), is(tablePairList.get(actualIndex).getColumns()));
         }
     }
 
     private AvroSchemaGroup getAvroSchemaGroup(String sourceSchemaDirectory) throws IOException {
-        LocalFilesystemSchemaSource mockLocalFilesystemSchemaSource = getMockLocalFilesystemSchemaSource(sourceSchemaDirectory);
+        LocalFilesystemSchemaSourceComplex mockLocalFilesystemSchemaSource = getMockLocalFilesystemSchemaSource(sourceSchemaDirectory);
         return new AvroSchemaGroup(mockLocalFilesystemSchemaSource);
     }
 
-    private LocalFilesystemSchemaSource getMockLocalFilesystemSchemaSource(String relativePathForSchemas) throws IOException {
+    private LocalFilesystemSchemaSourceComplex getMockLocalFilesystemSchemaSource(String relativePathForSchemas) throws IOException {
         File directory = new File(buildPathToTestInputData(relativePathForSchemas));
 
-        LocalFilesystemSchemaSource mockLocalFilesystemSchemaSource = mock(LocalFilesystemSchemaSource.class);
+        LocalFilesystemSchemaSourceComplex mockLocalFilesystemSchemaSource = mock(LocalFilesystemSchemaSourceComplex.class);
 
         when(mockLocalFilesystemSchemaSource.getName()).thenReturn("Test Source Name");
         when(mockLocalFilesystemSchemaSource.getDescription()).thenReturn("Test Source Description");

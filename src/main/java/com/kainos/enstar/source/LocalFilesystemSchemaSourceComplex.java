@@ -13,14 +13,14 @@ import java.util.Objects;
 /**
  * Created by darragh on 03/08/2017.
  */
-public class LocalFilesystemSchemaSource implements SchemaSourcePrimitive, SchemaSourceComplex {
+public class LocalFilesystemSchemaSourceComplex implements SchemaSourceComplex {
 
     private String name;
     private String description;
     private String schemaFieldPrimaryKeyIdentifier;
     private List<Schema> schemas = Collections.EMPTY_LIST;
 
-    public LocalFilesystemSchemaSource(String pathToDirectoryContainingSchemaFiles, String schemaFieldPrimaryKeyIdentifier, boolean enforceSingleNamespace) throws IOException, SchemaParseException {
+    public LocalFilesystemSchemaSourceComplex(String pathToDirectoryContainingSchemaFiles, String schemaFieldPrimaryKeyIdentifier, boolean enforceSingleNamespace) throws IOException, SchemaParseException {
         this.schemaFieldPrimaryKeyIdentifier = schemaFieldPrimaryKeyIdentifier;
         File directory = new File(pathToDirectoryContainingSchemaFiles);
 

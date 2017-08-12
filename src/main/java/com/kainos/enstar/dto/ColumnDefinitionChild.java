@@ -7,12 +7,12 @@ import static com.kainos.enstar.common.Utils.EMPTY_STRING;
 /**
  * Created by darragh on 10/08/2017.
  */
-public class ColumnDefinition {
+public class ColumnDefinitionChild implements DefinitionChild {
     private String name;
     private String description;
     private boolean isPrimaryKey = false;
 
-    public ColumnDefinition(Schema.Field field, boolean isPrimaryKey) {
+    public ColumnDefinitionChild(Schema.Field field, boolean isPrimaryKey) {
         this.name = field.name();
         this.description = field.doc() != null ? field.doc() : EMPTY_STRING;
         this.isPrimaryKey = isPrimaryKey;
@@ -30,11 +30,11 @@ public class ColumnDefinition {
         this.isPrimaryKey = keyIndicator;
     }
 
-    public String getComment() {
+    public String getDescription() {
         return description;
     }
 
-    public void setComment(String comment) {
+    public void setDescription(String comment) {
         this.description = comment;
     }
 }

@@ -55,19 +55,19 @@ public class SampleAuth {
                 String tableType = tbl.getTabletype();
                 String tableName = tbl.getTableName();
                 System.out.println(tableType + " - " + tableName);
-                System.out.println("TableDefinitionAllColumns Name is: " + tableName);
-                System.out.println("TableDefinitionAllColumns Type is: " + tbl.getTabletype());
-                System.out.println("TableDefinitionAllColumns Props are: " + tbl.getTblProps());
+                System.out.println("TableDefinitionParentAllColumns Name is: " + tableName);
+                System.out.println("TableDefinitionParentAllColumns Type is: " + tbl.getTabletype());
+                System.out.println("TableDefinitionParentAllColumns Props are: " + tbl.getTblProps());
                 List<HCatFieldSchema> fields = tbl.getCols();
                 for (HCatFieldSchema f: fields) {
-                    System.out.println("ColumnDefinition Name is: " + f.getName());
-                    System.out.println("ColumnDefinition Type String is: " + f.getTypeString());
-                    System.out.println("ColumnDefinition Type Category is: " + f.getTypeString());
+                    System.out.println("ColumnDefinitionChild Name is: " + f.getName());
+                    System.out.println("ColumnDefinitionChild Type String is: " + f.getTypeString());
+                    System.out.println("ColumnDefinitionChild Type Category is: " + f.getTypeString());
                     if (f.getCategory().equals(HCatFieldSchema.Category.STRUCT)) {
                         HCatSchema schema = f.getStructSubSchema();
                         List<String> structFields = schema.getFieldNames();
                         for (String fieldName: structFields) {
-                            System.out.println("Struct ColumnDefinition Name is: " + fieldName);
+                            System.out.println("Struct ColumnDefinitionChild Name is: " + fieldName);
                         }
                     }
                 }

@@ -33,7 +33,7 @@ public class LocalFilesystemSchemaSourceTest
         File schemaDirectory = new File(buildPathToTestInputData("singlevalidavroschema/"));
         List<Schema> expectedSchemas = loadSchemas(schemaDirectory);
 
-        LocalFilesystemSchemaSource schemaSource = new LocalFilesystemSchemaSource(schemaDirectory.getPath(),primaryKeyIdentifier, enforceNamespaceChecks);
+        LocalFilesystemSchemaSourceComplex schemaSource = new LocalFilesystemSchemaSourceComplex(schemaDirectory.getPath(),primaryKeyIdentifier, enforceNamespaceChecks);
         List<Schema> actualSchemas = schemaSource.getSchemas();
 
         Assert.assertEquals(expectedSchemas, actualSchemas);
@@ -44,7 +44,7 @@ public class LocalFilesystemSchemaSourceTest
         File schemaDirectory = new File(buildPathToTestInputData("multiplevalidavroschemas/"));
         List<Schema> expectedSchemas = loadSchemas(schemaDirectory);
 
-        LocalFilesystemSchemaSource schemaSource = new LocalFilesystemSchemaSource(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
+        LocalFilesystemSchemaSourceComplex schemaSource = new LocalFilesystemSchemaSourceComplex(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
         List<Schema> actualSchemas = schemaSource.getSchemas();
 
         Assert.assertEquals(expectedSchemas, actualSchemas);
@@ -55,7 +55,7 @@ public class LocalFilesystemSchemaSourceTest
         File schemaDirectory = new File(buildPathToTestInputData("singleinvalidavroschema/"));
 
         thrown.expect(SchemaParseException.class);
-        LocalFilesystemSchemaSource schemaSource = new LocalFilesystemSchemaSource(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
+        LocalFilesystemSchemaSourceComplex schemaSource = new LocalFilesystemSchemaSourceComplex(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class LocalFilesystemSchemaSourceTest
         File schemaDirectory = new File(buildPathToTestInputData("singlevalidavroschemainvalidsource/"));
 
         thrown.expect(IOException.class);
-        LocalFilesystemSchemaSource schemaSource = new LocalFilesystemSchemaSource(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
+        LocalFilesystemSchemaSourceComplex schemaSource = new LocalFilesystemSchemaSourceComplex(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class LocalFilesystemSchemaSourceTest
         File schemaDirectory = new File(buildPathToTestInputData("duplicateavroschemas/"));
 
         thrown.expect(SchemaParseException.class);
-        LocalFilesystemSchemaSource schemaSource = new LocalFilesystemSchemaSource(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
+        LocalFilesystemSchemaSourceComplex schemaSource = new LocalFilesystemSchemaSourceComplex(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class LocalFilesystemSchemaSourceTest
 
         thrown.expect(SchemaParseException.class);
         thrown.expectMessage(is("Multiple namespaces identified: eclipse_tactical and eclipse_strategic. Only one namespace must be present in each Schema Source."));
-        LocalFilesystemSchemaSource schemaSource = new LocalFilesystemSchemaSource(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
+        LocalFilesystemSchemaSourceComplex schemaSource = new LocalFilesystemSchemaSourceComplex(schemaDirectory.getPath(), primaryKeyIdentifier, enforceNamespaceChecks);
     }
 
     private List<Schema> loadSchemas(File schemaDirectory) throws IOException {

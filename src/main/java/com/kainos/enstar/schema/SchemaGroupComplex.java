@@ -1,15 +1,14 @@
 package com.kainos.enstar.schema;
 
-import com.kainos.enstar.dto.TableDefinition;
+import com.kainos.enstar.dto.DefinitionParent;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by darragh on 16/03/2017.
  */
-public interface SchemaGroupComplex {
-    List<TableDefinition> getTablesAndPrimaryKeyColumns();
+public interface SchemaGroupComplex extends SchemaGroupPrimitive {
+    List<DefinitionParent> getTablesAndPrimaryKeyColumns();
 
-    List<TableDefinition> getTablesAndAllColumns();
+    List<DefinitionParent> getTablesAndAllColumns();
 }

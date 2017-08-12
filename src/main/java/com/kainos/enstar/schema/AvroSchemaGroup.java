@@ -1,7 +1,9 @@
 package com.kainos.enstar.schema;
 
-import com.kainos.enstar.dto.DatabaseDefinition;
-import com.kainos.enstar.dto.TableDefinition;
+import com.kainos.enstar.dto.DatabaseDefinitionGrandParent;
+import com.kainos.enstar.dto.DefinitionChild;
+import com.kainos.enstar.dto.DefinitionParent;
+import com.kainos.enstar.source.SchemaSourceComplex;
 import com.kainos.enstar.source.SchemaSourcePrimitive;
 
 import java.util.List;
@@ -13,14 +15,14 @@ import java.util.HashMap;
  *
  * This class provides additional functionality for Avro schemas, such as identifying primary key columns.
  */
-public class AvroSchemaGroup implements SchemaGroupPrimitive, SchemaGroupComplex {
+public class AvroSchemaGroup implements SchemaGroupComplex {
 
     private SchemaSourcePrimitive schemaSource;
-    private DatabaseDefinition databaseDefinition;
+    private DatabaseDefinitionGrandParent databaseDefinition;
 
-    public AvroSchemaGroup(SchemaSourcePrimitive schemaSource){
+    public AvroSchemaGroup(SchemaSourceComplex schemaSource){
         this.schemaSource = schemaSource;
-        this.databaseDefinition = new DatabaseDefinition(schemaSource);
+        this.databaseDefinition = new DatabaseDefinitionGrandParent(schemaSource);
     }
 
     public String getName(){
@@ -31,18 +33,18 @@ public class AvroSchemaGroup implements SchemaGroupPrimitive, SchemaGroupComplex
         return this.databaseDefinition.getDescription();
     }
 
-    public List<TableDefinition> getTablesAndPrimaryKeyColumns(){
+    public List<DefinitionParent> getTablesAndPrimaryKeyColumns(){
         return this.databaseDefinition.getTableDefinitionListPkColumns();
     }
 
-    public List<TableDefinition> getTablesAndAllColumns(){
-        return this.databaseDefinition.getTableDefinitionListAllColumns();
+    public List<DefinitionParent> getTablesAndAllColumns(){
+        return this.databaseDefinition.getChildDefinitionList();
     }
 
     public Map<String, String> getTableNamesAndDescriptionsOnly(){
         Map<String,String> tablesNamesAndDescriptions = new HashMap<>();
 
-        for (TableDefinition table : databaseDefinition.getTableDefinitionListAllColumns()){
+        for (DefinitionChild table : databaseDefinition.getChildDefinitionList()){
             tablesNamesAndDescriptions.put(table.getName(), table.getDescription());
         }
         return tablesNamesAndDescriptions;
@@ -51,8 +53,8 @@ public class AvroSchemaGroup implements SchemaGroupPrimitive, SchemaGroupComplex
     public Map<String, Integer> getTableNamesAndNumberOfColumnsOnly(){
         Map<String,Integer> tableNamesAndNumberOfColumns = new HashMap<>();
 
-        for (TableDefinition table : databaseDefinition.getTableDefinitionListAllColumns()){
-            tableNamesAndNumberOfColumns.put(table.getName(), table.getColumnDefinitionList().size());
+        for (DefinitionParent table : databaseDefinition.getChildDefinitionList()){
+            tableNamesAndNumberOfColumns.put(table.getName(), table.getChildDefinitionList().size());
         }
         return tableNamesAndNumberOfColumns;
     }
